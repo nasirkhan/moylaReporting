@@ -1,0 +1,58 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<title>Waste Management System</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="main.js"></script>
+	
+	</head> 
+	<body >
+	<div data-role="page" data-theme="a">
+
+		<div data-role="header" data-theme="a">
+			<h2>Waste Management System</h2>
+		</div><!-- /header -->
+
+		<div data-role="content" data-theme="a">	
+			<h1 align="center">Information</h1>	
+			<form name="reg" id ="reg" action="index.html">
+			 
+    			
+			<div data-role="fieldcontain" data-theme="a">
+				<div style="height:80%;width:10%;float:left;">
+			    	<label for="name">Name:</label></br>
+			    	<label for="flip-min">Select Gender:</label></br>
+			    	<label for="cell">Cell Number:</label>
+			    	</div>
+			    <div style="height:80%;width:90%;float:left;">
+    				<input type="text" name="name" id="name" value=""  /><br>
+    				<select name="slider" id="flip-min" data-role="slider">
+						<option value="off">Male</option>
+						<option value="on">Female</option>
+					</select> </br>
+			
+    				<input type="text" name="cell" id="cell" value=""  />
+    				</div>
+    			<div style="height:85%;width:100%;float:left;">
+    				<a href="" data-role="button"  Input type="submit" data-mini="false">Submit</a>
+    			
+
+			</div>	
+
+			
+		</form>
+
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="a">
+	<div data-role="navbar">
+		
+	</div><!-- /navbar -->
+</div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>
