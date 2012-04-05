@@ -25,8 +25,10 @@ function getLocation(){
                             'Timestamp: '          + new Date(position.timestamp)          + '<br />'
                         );
                         */
-          latitude=position.coords.latitude.replace(".", ",");
-          longtitude=position.coords.longitude.replace(".", ",");
+          latitude=position.coords.latitude.toString();
+          longtitude=position.coords.longitude.toString();
+          latitude=latitude.replace(".", ",");
+          longtitude=longtitude.replace(".", ",");
           
     }
 
