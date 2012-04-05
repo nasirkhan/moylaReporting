@@ -1,4 +1,7 @@
-	function getLocation(){
+var latitude;
+var longtitude;
+
+function getLocation(){
 		document.addEventListener("deviceready", onDeviceReady, false);
 	}
 
@@ -12,7 +15,7 @@
     //
     function onSuccess(position) {
 //        var element = document.getElementById('geolocation');
-        alert('Latitude: '           + position.coords.latitude              + '<br />' +
+       /* alert('Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
                             'Altitude: '           + position.coords.altitude              + '<br />' +
                             'Accuracy: '           + position.coords.accuracy              + '<br />' +
@@ -21,6 +24,10 @@
                             'Speed: '              + position.coords.speed                 + '<br />' +
                             'Timestamp: '          + new Date(position.timestamp)          + '<br />'
                         );
+                        */
+          Latitude=position.coords.latitude.replace(".", ",");
+          Longitude=position.coords.longitude.replace(".", ",");
+          
     }
 
     // onError Callback receives a PositionError object

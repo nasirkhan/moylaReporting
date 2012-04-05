@@ -36,20 +36,20 @@
         	while(objectId==false);
         	var upload_url="http://services.terbit.nl:2357/TWMSService/upload?token="+objectId+"&filenaam="+imgName;
         	alert(upload_url);
-            var options = new FileUploadOptions();
-            options.fileKey="file";
-            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-            options.mimeType="image/jpeg";
- 			alert(options.fileName);
-            var params = new Object();
-            params.value1 = "test";
-            params.value2 = "param";
- 
-            options.params = params;
-            options.chunkedMode = false;
+//            var options = new FileUploadOptions();
+//            options.fileKey="file";
+//            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+//            options.mimeType="image/jpeg";
+//            alert(options.fileName);
+//            var params = new Object();
+//            params.value1 = "test";
+//            params.value2 = "param";
+// 
+//            options.params = params;
+//            options.chunkedMode = false;
  
             var ft = new FileTransfer();
-            ft.upload(imageURI, upload_url, win, fail, options);
+            ft.upload(imageURI, upload_url, win, fail);
         }
  
         function win(r) {
@@ -62,6 +62,7 @@
  
         function fail(error) {
             alert("An error has occurred: Code = "+ error.code);
+            
         }
  
         </script>
