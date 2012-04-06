@@ -15,6 +15,7 @@
         // PhoneGap is ready
         function onDeviceReady() {
             navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            
         }
  
         function getImage() {
@@ -30,44 +31,48 @@
  
         }
 		
-        function uploadPhoto(objectID,imageURI) {
-        	alert(objectID+"and"+imageURI);
+        function uploadPhoto(objectID) {
+        	alert(objectID);
            	var imgName = 'tiger.jpg';
-        	while(objectId==false);
-        	var upload_url="http://services.terbit.nl:2357/TWMSService/upload?token="+objectId+"&filenaam="+imgName;
+        	var upload_url="http://services.terbit.nl:2357/TWMSService/upload?token="+objectID+"&filenaam="+imgName;
         	alert(upload_url);
-//            var options = new FileUploadOptions();
-//            options.fileKey="file";
-//            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-//            options.mimeType="image/jpeg";
-//            alert(options.fileName);
-//            var params = new Object();
-//            params.value1 = "test";
-//            params.value2 = "param";
-// 
-//            options.params = params;
-//            options.chunkedMode = false;
- 
-            var ft = new FileTransfer();
-            ft.upload(imageURI, upload_url, win, fail);
-        }
- 
-        function win(r) {
-            console.log("Code = " + r.responseCode);
-            console.log("Response = " + r.response);
-            console.log("Sent = " + r.bytesSent);
-            alert(r.response);
-            alert("Done");
-        }
- 
-        function fail(error) {
-            alert("An error has occurred: Code = "+ error.code);
-            
-        }
+    //            var options = new FileUploadOptions();
+    //            options.fileKey="file";
+    //            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+    //            options.mimeType="image/jpeg";
+    //            alert(options.fileName);
+    //            var params = new Object();
+    //            params.value1 = "test";
+    //            params.value2 = "param";
+    // 
+    //            options.params = params;
+    //            options.chunkedMode = false;
+
+    //            var ft = new FileTransfer();
+    //            ft.upload(imageURI, upload_url, win, fail);
+    //        }
+    // 
+    //        function win(r) {
+    //            console.log("Code = " + r.responseCode);
+    //            console.log("Response = " + r.response);
+    //            console.log("Sent = " + r.bytesSent);
+    //            alert(r.response);
+    //            alert("Done");
+    //        }
+    // 
+    //        function fail(error) {
+    //            alert("An error has occurred: Code = "+ error.code);
+    //            
+    //        }
+        navigator.camera.getPicture(function(data){
+                $.post(upload_url, {data:data});
+            }, function(msg){alert(msg);}, { quality: 20 });
+
+
  
         </script>
 </head>
 <body>
-    <button onclick="getImage();">Upload a Photo</button>
+    <button onclick="getobjectID()">Upload a Photo</button>
 </body>
 </html>
