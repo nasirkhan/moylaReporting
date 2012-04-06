@@ -11,7 +11,7 @@
         <script src="themes/jquery.mobile-1.0.1.min.js"></script>
         <script type="text/javascript" src="phonegap-1.4.1.js"></script>
         <script type="text/javascript" charset="utf-8" src="pic.js"></script>
-  
+
 
     </head>
 
@@ -22,7 +22,7 @@
         .................................................................... -->
         <div data-role="page" id="home" data-theme="b"> 
             <!-- page 1 | Header  ------------------------------------------------------ -->
-            <div data-role="header" data-theme="a"> 
+            <div data-role="header" data-theme="d"> 
                 <h1>You</h1> 
             </div> <!--END header -->
             <!-- page 1 | content ------------------------------------------------------ -->
@@ -34,21 +34,31 @@
             </div><!--END content --> 
 
             <!-- page 1 | footer ------------------------------------------------------- -->
-            <div data-role="footer" data-position="fixed" data-theme="a">
-                <p>
-                    <a href="#home" data-role="button">You</a>
-                    <a href="#page2-photo" data-role="button">Get Photo</a>
-                    <a href="#geo-location" data-role="button">Location</a>
-                    <a href="#submit-info" data-role="button">Submit</a>
-                </p>
-            </div> <!--  END footer  -->
+<!--            <div data-role="footer" data-position="fixed" data-theme="a">
+          
+                    <a class="clear-round" href="#home" data-role="button">You</a>
+                    <a class="clear-round" href="#page2-photo" data-role="button">Get Photo</a>
+                    <a class="clear-round" href="#geo-location" data-role="button">Location</a>
+                    <a class="clear-round" href="#submit-info" data-role="button">Submit</a>
+            
+            </div>   END footer  -->
+            <div data-role="footer" data-id="foo1" data-position="fixed" data-fullscreen="true" data-theme="a">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a class="clear-round ui-btn-active" href="#home" data-role="button">You</a></li>
+                        <li><a class="clear-round" href="#page2-photo" data-role="button">Photo</a></li>
+                        <li><a class="clear-round" href="#geo-location" data-role="button">Location</a></li>
+                        <li><a class="clear-round" href="#submit-info" data-role="button">Submit</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
         </div> <!--END page 1 -->
 
         <!-- 
         page 2 | Capture photo 
         .................................................................... -->
-        <div data-role="page" id="page2-photo"> 
-            <div data-role="header" data-position="fixed"> 
+        <div data-role="page" id="page2-photo" data-theme="b"> 
+            <div data-role="header" data-position="fixed" data-theme="d"> 
                 <h1>Photos</h1> 
             </div>
 
@@ -59,31 +69,33 @@
                 <!-- <p><a href="#select-photo" data-role="button">Select form Gallery</a></p>  -->
                 <button  data-role="button" onclick="capturePhoto();">Capture Photo</button> 
                 <button  data-role="button" onclick="capturePhoto();">Select form Gallery </button> 
-                
+
                 <div>
-                	<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+                    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
                     <img style="display:none;" id="largeImage" src="" />
                 </div> 
             </div><!--END content -->
 
             <!-- page 2 | footer ........................................... -->
-            <div data-role="footer" data-position="fixed" data-theme="a">
-                <p>
-                    <a href="#home" data-role="button">You</a>
-                    <a href="#page2-photo" data-role="button">Get Photo</a>
-                    <a href="#geo-location" data-role="button">Location</a>
-                    <a href="#submit-info" data-role="button">Submit</a>
-                </p>
-            </div> <!--  END footer  -->
+            <div data-role="footer" data-id="foo1" data-position="fixed" data-fullscreen="true" data-theme="a">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a class="clear-round" href="#home" data-role="button">You</a></li>
+                        <li><a class="clear-round ui-btn-active" href="#page2-photo" data-role="button">Photo</a></li>
+                        <li><a class="clear-round" href="#geo-location" data-role="button">Location</a></li>
+                        <li><a class="clear-round" href="#submit-info" data-role="button">Submit</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
 
         </div><!--  END page 2  -->
 
         <!-- 
         page 3 | Geo location
         .................................................................... -->
-        <div data-role="page" id="geo-location"> 
+        <div data-role="page" id="geo-location" data-theme="b"> 
 
-            <div data-role="header" data-position="fixed"> 
+            <div data-role="header" data-position="fixed" data-theme="d"> 
                 <h1>Location</h1> 
             </div> 
             <!-- page 3 | content ------------------------------------------ -->
@@ -93,23 +105,25 @@
 
             </div>
             <!-- page 3 | footer ------------------------------------------- -->
-            <div data-role="footer" data-position="fixed" data-theme="a">
-                <p>
-                    <a href="#home" data-role="button">You</a>
-                    <a href="#page2-photo" data-role="button">Get Photo</a>
-                    <a href="#geo-location" data-role="button">Location</a>
-                    <a href="#submit-info" data-role="button">Submit</a>
-                </p>
-            </div> <!--  END footer  -->
+            <div data-role="footer" data-id="foo1" data-position="fixed" data-fullscreen="true" data-theme="a">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a class="clear-round" href="#home" data-role="button">You</a></li>
+                        <li><a class="clear-round" href="#page2-photo" data-role="button">Photo</a></li>
+                        <li><a class="clear-round ui-btn-active" href="#geo-location" data-role="button">Location</a></li>
+                        <li><a class="clear-round" href="#submit-info" data-role="button">Submit</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
 
         </div><!--  END page 3  -->
 
         <!-- 
         page 4 | 
         .................................................................... -->
-        <div data-role="page" id="submit-info"> 
+        <div data-role="page" id="submit-info" data-theme="b"> 
 
-            <div data-role="header" data-position="fixed"> 
+            <div data-role="header" data-position="fixed" data-theme="d"> 
                 <h1>Submit</h1> 
             </div> 
             <!-- page 4 | content ------------------------------------------ -->
@@ -119,14 +133,16 @@
 
             </div>
             <!-- page 4 | footer ------------------------------------------- -->
-            <div data-role="footer" data-position="fixed" data-theme="a">
-                <p>
-                    <a href="#home" data-role="button">You</a>
-                    <a href="#page2-photo" data-role="button">Get Photo</a>
-                    <a href="#geo-location" data-role="button">Location</a>
-                    <a href="#submit-info" data-role="button">Submit</a>
-                </p>
-            </div> <!--  END footer  -->
+            <div data-role="footer" data-id="foo1" data-position="fixed" data-fullscreen="true" data-theme="a">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a class="clear-round" href="#home" data-role="button">You</a></li>
+                        <li><a class="clear-round" href="#page2-photo" data-role="button">Photo</a></li>
+                        <li><a class="clear-round" href="#geo-location" data-role="button">Location</a></li>
+                        <li><a class="clear-round ui-btn-active" href="#submit-info" data-role="button" >Submit</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
 
         </div><!--  END page 4  -->
     </body>
