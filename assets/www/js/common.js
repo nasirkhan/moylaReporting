@@ -4,12 +4,19 @@ var gender;
 var b_year;
 var email;
 var phone;
-
-            
+           
 document.addEventListener("deviceready", onDeviceReady, false);
             
 function onDeviceReady() {
+    firstRunCheck();   
                 
+}
+
+function firstRunCheck(){
+    firstRun=window.localStorage.getItem("familyName");
+    if (firstRun==null){
+        window.open('#p-reg');        
+    }
 }
 function genderChecke()
 {
@@ -62,11 +69,11 @@ function showInfo(){
     
     var result = document.getElementById("result");
     result.innerHTML = "familyName: " + window.localStorage.getItem("familyName")  + " // ";
-    result.innerHTML += "initials: " + window.localStorage.getItem("initials")  + " // ";
-    result.innerHTML += "gender: " + window.localStorage.getItem("gender")  + " // ";
-    result.innerHTML += "initials: " + window.localStorage.getItem("b_year")  + " // ";
-    result.innerHTML += "initials: " + window.localStorage.getItem("email")  + " // ";
-    result.innerHTML += "initials: " + window.localStorage.getItem("phone")  + " // ";
+//    result.innerHTML += "initials: " + window.localStorage.getItem("initials")  + " // ";
+//    result.innerHTML += "gender: " + window.localStorage.getItem("gender")  + " // ";
+//    result.innerHTML += "initials: " + window.localStorage.getItem("b_year")  + " // ";
+//    result.innerHTML += "initials: " + window.localStorage.getItem("email")  + " // ";
+//    result.innerHTML += "initials: " + window.localStorage.getItem("phone")  + " // ";
     
     return false;
 }

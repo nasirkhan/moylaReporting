@@ -21,10 +21,10 @@
         <script type="text/javascript" src="js/prettify.min.js"></script>
         <script type="text/javascript" src="js/demo.js"></script>
         <script type="text/javascript" src="js/jquery.ui.map.js"></script>
-        
-        
+
+
         <script type="text/javascript" src="js/common.js"></script>
-        
+
 
 
         <script type="text/javascript">
@@ -40,10 +40,7 @@
                 
                 $('#h_link').addClass('ui-disabled');
                 
-                if (familyName == null){
-//                    alert("I am an alert box!");
-                    window.open('reg.html');
-                }
+                
                 
             }
             
@@ -100,166 +97,213 @@
     </head> 
     <body> 
         <div id="wrap">
-        <!-- Start of the page: #home -->
-        <div data-role="page" id="home" data-theme="b" class="page-containar"> 
-            <!-- page 1 | Header   -->
-            <div data-role="header" data-theme="d"> 
-                <h1 align="center">TWMS</h1> 
-            </div> <!--END header -->
-            <!-- page 1 | content  -->
-            <div data-role="content">
+            <!-- Start of the page: #home -->
+            <div data-role="page" id="home" data-theme="b" class="page-containar"> 
+                <!-- page 1 | Header   -->
+                <div data-role="header" data-theme="d"> 
+                    <h1 align="center">TWMS</h1> 
+                </div> <!--END header -->
+                <!-- page 1 | content  -->
+                <div data-role="content">
 
-                <h1>Welcome to TWMS</h1><div id="result"></div>
-                <p><a href="#photo" data-role="button" data-transition="none" class="main_page_button take_photo" onclick="capturePhoto();">Take Photo</a></p>
-                <div id="h_link" class="">
-                    <p><a href="#photo" data-role="button" data-transition="none" class="main_page_button" data-theme="b" id="h_link">Send Incident</a></p>
-                    <p><a href="#geo-location" data-role="button" data-transition="none" class="main_page_button " data-theme="e" id="h_link">View Location</a></p>
-                </div>
-                <p><a href="" data-role="button" data-transition="none" data-theme="a" data-icon="info" onClick="showInfo()">Your Information</a></p>
-
-            </div><!-- /content --> 
-
-        </div> <!-- /page 1 -->
-
-        <!-- Start of the page: #photo -->
-        <div data-role="page" id="photo" data-theme="b"> 
-            <!-- page 2 | Header   -->
-            <div data-role="header" data-theme="d"> 
-                <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
-                <h1>TWMS</h1>
-                <a href="#geo-location" data-theme="b" data-mini="true" data-icon="forward" data-iconpos="right" data-direction="reverse">Location</a>
-            </div> <!--END header -->
-            <!-- page 2 | content  -->
-            <div data-role="content">
-
-                <div data-role="controlgroup" data-type="horizontal">
-                    <a href="index.html" data-role="button">Yes</a>
-                    <a href="index.html" data-role="button">No</a>
-
-                </div>
-
-                <div>
-                    <img class="image-thumb" id="smallImage" src="" />
-                </div>
-                <div id="image-display">
-                    <div id="camera-iamge" class="image-div">
-                        <img style="display:none;width:60px;height:60px; float:left; padding-right:5px;" id="smallImage" src="" />
+                    <h1>Welcome to TWMS</h1>
+                    <p><a href="#photo" data-role="button" data-transition="none" class="main_page_button take_photo" onclick="capturePhoto();">Take Photo</a></p>
+                    <div id="h_link" class="">
+                        <p><a href="#photo" data-role="button" data-transition="none" class="main_page_button" data-theme="b" id="h_link">Send Incident</a></p>
+                        <p><a href="#geo-location" data-role="button" data-transition="none" class="main_page_button " data-theme="e" id="h_link">View Location</a></p>
                     </div>
-                    <div id="gallery-image" class="image-div"></div>                    
-                </div>
+                    <p><a href="#p-reg" data-role="button" data-transition="none" data-theme="a" data-icon="info">Your Information</a></p>
 
-                <div data-role="fieldcontain">
-                    <label for="select-choice-1" class="select">Choose from options:</label>
-                    <select name="select-choice-1" id="select-choice-1">
-                        <option value="o00">Select the Category</option>
-                        <option value="o1">Overige meldingen</option>
-                        <option value="o2">Schade aan privé objecten</option>
-                        <option value="o3">Beschadiging aan gemeentelijke objecten</option>
-                        <option value="o4">Zwerfvuil</option>
-                        <option value="o5">Zinloos geweld</option>
-                        <option value="o6">Openbare vechtpartij</option>
-                        <option value="o7">Auto ongeluk</option>
-                        <option value="o8">Fiets ongeluk</option>
-                        <option value="o9">Hondenpoep</option>
-                        <option value="o10">Openbare dronkenschap</option>
-                        <option value="o11">Overige geweldmisdrijf</option>
-                        <option value="o12">Inbraak</option>
-                        <option value="o13">Overige misdrijven</option>
+                </div><!-- /content --> 
 
-                    </select>
-                </div>
+            </div> <!-- /page 1 -->
 
-                <div data-role="fieldcontain">
-                    <label for="textarea">Additional remark:</label>
-                    <textarea name="textarea" id="textarea" placeholder="Write a description..."></textarea>
-                </div>
+            <!-- Start of the page: #photo -->
+            <div data-role="page" id="photo" data-theme="b"> 
+                <!-- page 2 | Header   -->
+                <div data-role="header" data-theme="d"> 
+                    <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+                    <h1>TWMS</h1>
+                    <a href="#geo-location" data-theme="b" data-mini="true" data-icon="forward" data-iconpos="right" data-direction="reverse">Location</a>
+                </div> <!--END header -->
+                <!-- page 2 | content  -->
+                <div data-role="content">
+
+                    <div data-role="controlgroup" data-type="horizontal">
+                        <a href="index.html" data-role="button">Yes</a>
+                        <a href="index.html" data-role="button">No</a>
+
+                    </div>
+
+                    <div>
+                        <img class="image-thumb" id="smallImage" src="" />
+                    </div>
+                    <div id="image-display">
+                        <div id="camera-iamge" class="image-div">
+                            <img style="display:none;width:60px;height:60px; float:left; padding-right:5px;" id="smallImage" src="" />
+                        </div>
+                        <div id="gallery-image" class="image-div"></div>                    
+                    </div>
+
+                    <div data-role="fieldcontain">
+                        <label for="select-choice-1" class="select">Choose from options:</label>
+                        <select name="select-choice-1" id="select-choice-1">
+                            <option value="o00">Select the Category</option>
+                            <option value="o1">Overige meldingen</option>
+                            <option value="o2">Schade aan privé objecten</option>
+                            <option value="o3">Beschadiging aan gemeentelijke objecten</option>
+                            <option value="o4">Zwerfvuil</option>
+                            <option value="o5">Zinloos geweld</option>
+                            <option value="o6">Openbare vechtpartij</option>
+                            <option value="o7">Auto ongeluk</option>
+                            <option value="o8">Fiets ongeluk</option>
+                            <option value="o9">Hondenpoep</option>
+                            <option value="o10">Openbare dronkenschap</option>
+                            <option value="o11">Overige geweldmisdrijf</option>
+                            <option value="o12">Inbraak</option>
+                            <option value="o13">Overige misdrijven</option>
+
+                        </select>
+                    </div>
+
+                    <div data-role="fieldcontain">
+                        <label for="textarea">Additional remark:</label>
+                        <textarea name="textarea" id="textarea" placeholder="Write a description..."></textarea>
+                    </div>
 
 
-            </div><!-- /content --> 
+                </div><!-- /content --> 
 
-        </div> <!-- /page 2 -->
+            </div> <!-- /page 2 -->
 
-        <!-- 
-        page 3 | Geo location
-        .................................................................... -->
-        <div data-role="page" id="geo-location" data-theme="b"> 
+            <!-- 
+            page 3 | Geo location
+            .................................................................... -->
+            <div data-role="page" id="geo-location" data-theme="b"> 
 
-            <div data-role="header" data-position="fixed" data-theme="d"> 
-                <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
-                <h1>TWMS</h1> 
-                <a href="#submit-info" data-theme="b" data-mini="true" data-icon="forward" data-iconpos="right" data-direction="reverse">Submit</a>
-            </div> 
-            <!-- page 3 | content  -->
-            <div data-role="content" class="box"> 
+                <div data-role="header" data-position="fixed" data-theme="d"> 
+                    <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+                    <h1>TWMS</h1> 
+                    <a href="#submit-info" data-theme="b" data-mini="true" data-icon="forward" data-iconpos="right" data-direction="reverse">Submit</a>
+                </div> 
+                <!-- page 3 | content  -->
+                <div data-role="content" class="box"> 
 
-                <a href="#popup" data-role="button" data-rel="dialog" data-transition="pop">Change Location Manually</a>
-                <!--current location on the map-->
-                <p> 
-                <div id="geo-locaion">
-                    <div class="mapGeo">
-                        <div>
-                            <div id="map_canvas" class="map"></div>
+                    <a href="#popup" data-role="button" data-rel="dialog" data-transition="pop">Change Location Manually</a>
+                    <!--current location on the map-->
+                    <p> 
+                    <div id="geo-locaion">
+                        <div class="mapGeo">
+                            <div>
+                                <div id="map_canvas" class="map"></div>
+                            </div>
                         </div>
                     </div>
+
+                    </p>
+                    <!--location information. coordinate and location name-->
+                    <p>
+
+                    <div id="location-name" class="cord-info"></div>
+                    </p>
+                    <p>
+
+                    <div id="location-cord" class="cord-info"></div>
+                    </p>
+
+                </div> <!-- /content3 -->
+
+
+            </div><!--  /page 3  -->
+
+            <!-- 
+            page 4 | 
+            .................................................................... -->
+            <div data-role="page" id="submit-info" data-theme="b"> 
+
+                <div data-role="header" data-position="fixed" data-theme="d"> 
+                    <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+                    <h1>TWMS</h1> 
+                </div> 
+                <!-- page 4 | content ------------------------------------------ -->
+                <div data-role="content"> 
+                    <label>Family Name:</label>
+                    <label>Email:</label>
+                    <label>Category:</label>
+                    <label>Location:</label>
+                    <div id="location-name" class="cord-info"></div>
+                    <label>Remark:</label>
+
+                    <a href="#thanks" name="submit_data" data-theme="b" data-direction="reverse" data-ajax="false">Submit</a>
+
+
+                    <!--                 <button type="submit" data-theme="b" name="submit_data" value="submit-data" data-ajax="false">Submit</button>-->
                 </div>
 
-                </p>
-                <!--location information. coordinate and location name-->
-                <p>
 
-                <div id="location-name" class="cord-info"></div>
-                </p>
-                <p>
+            </div><!--  /page 4  -->
 
-                <div id="location-cord" class="cord-info"></div>
-                </p>
+            <!-- 
+            page 5 | 
+            .................................................................... -->
+            <div data-role="page" id="thanks" data-theme="b"> 
 
-            </div> <!-- /content3 -->
+                <div data-role="header" data-position="fixed" data-theme="d"> 
+                    <h1>TWMS</h1> 
+                </div> 
+                <!-- page 5 | content ------------------------------------------ -->
+                <div data-role="content"> 
+                    <p> <h3>Thank you for submitting the information. </h3> </p>
+                </div><!-- /content -->
 
-
-        </div><!--  /page 3  -->
-
-        <!-- 
-        page 4 | 
-        .................................................................... -->
-        <div data-role="page" id="submit-info" data-theme="b"> 
-
-            <div data-role="header" data-position="fixed" data-theme="d"> 
-                <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
-                <h1>TWMS</h1> 
-            </div> 
-            <!-- page 4 | content ------------------------------------------ -->
-            <div data-role="content"> 
-                <label>Family Name:</label>
-                <label>Email:</label>
-                <label>Category:</label>
-                <label>Location:</label>
-                <div id="location-name" class="cord-info"></div>
-                <label>Remark:</label>
-
-                <a href="#thanks" name="submit_data" data-theme="b" data-direction="reverse" data-ajax="false">Submit</a>
+            </div><!--  /page 5  -->
+            <div data-role="page" id="p-reg" data-theme="c"> 
+                <!-- page 1 | Header  ------------------------------------------------------ -->
+                <div data-role="header" data-theme="d"> 
+                    <h1>TWMS</h1> 
+                </div> <!--END header -->
+                <!-- page 1 | content ------------------------------------------------------ -->
+                <div data-role="content">
 
 
-                <!--                 <button type="submit" data-theme="b" name="submit_data" value="submit-data" data-ajax="false">Submit</button>-->
-            </div>
+                    <h1 align="center">Registration</h1>	
+                    <form name="reg" id ="reg" action="index3.html">
+                        <fieldset>
+                            <div data-role="fieldcontain" data-mini="true">
+                                <label for="familyName">Family Name:</label>
+                                <input type="text" name="familyName" id="familyName" required />
+                                <label for="initials">Initials:</label>
+                                <input type="text" name="initials" id="initials"  />                            
+                                <label for="flip-a">Gender:</label>                                
+                                <fieldset data-role="controlgroup" data-mini="true">                                
+                                    <input type="radio" name="gender" id="radio-mini-1" value="male" />                                    
+                                    <label for="radio-mini-1">Male</label>
+
+                                    <input type="radio" name="gender" id="radio-mini-2" value="female"  />                                    
+                                    <label for="radio-mini-2">Female</label>
+
+                                    <input type="radio" name="gender" id="radio-mini-3" value="other"  />                                    
+                                    <label for="radio-mini-3">Other</label>
+                                </fieldset>
+                                <label for="b_year">Year of Birth:</label>
+                                <input type="text" name="b_year" id="b_year" value="" placeholder="Enter the Year Only" />
+                                <label for="email">Email:</label>
+                                <input type="email" name="email" id="email" value="" placeholder="Enter Email Address" required />
+                                <label for="phone">Phone:</label>
+                                <input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" />
+                            </div>
+                            <a href="index3.html" data-role="button" onClick="storeInfo()" >Submit</a>
+                            <a data-role="button" onClick="showInfo()" >show</a>
+<!--                            <a href="index3.html" data-role="button" >Next</a>-->
+                        </fieldset>
 
 
-        </div><!--  /page 4  -->
+                    </form>
+                    <div id="result"></div>
+                </div><!-- /content -->
 
-        <!-- 
-        page 5 | 
-        .................................................................... -->
-        <div data-role="page" id="thanks" data-theme="b"> 
 
-            <div data-role="header" data-position="fixed" data-theme="d"> 
-                <h1>TWMS</h1> 
-            </div> 
-            <!-- page 5 | content ------------------------------------------ -->
-            <div data-role="content"> 
-                <p> <h3>Thank you for submitting the information. </h3> </p>
-            </div><!-- /content -->
-
-        </div><!--  /page 5  -->
-</div>
+            </div><!-- /page -->
+        </div>
     </body>
 </html>
