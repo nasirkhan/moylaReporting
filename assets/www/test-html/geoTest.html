@@ -11,10 +11,10 @@
         <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.1.0.min.js"></script>
         <script type="text/javascript" src="js/phonegap-1.4.1.js"></script>
-
+        
         <script type="text/javascript" src="js/camera-all.js"></script>
         <script type="text/javascript" src="js/uploadpic.js"></script>
-
+        
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
         <script type="text/javascript" src="js/underscore.min.js"></script>
         <script type="text/javascript" src="js/backbone.min.js"></script>
@@ -23,34 +23,23 @@
         <script type="text/javascript" src="js/jquery.ui.map.js"></script>
         
         
-        <script type="text/javascript" src="js/common.js"></script>
-        
-
-
         <script type="text/javascript">
-            
+             
             document.addEventListener("deviceready",onDeviceReady,false);
-            
+
             // PhoneGap is ready to be used!
             //
             function onDeviceReady() {
                 //Camera and Gallery
                 pictureSource=navigator.camera.PictureSourceType;
                 destinationType=navigator.camera.DestinationType;
-                
-                $('#h_link').addClass('ui-disabled');
-                
-                if (familyName == null){
-//                    alert("I am an alert box!");
-                    window.open('reg.html');
-                }
-                
+   
             }
             
         </script>
         <script type="text/javascript">     
             navigator.geolocation.getCurrentPosition(function(position) {
-                //                alert(position.coords.latitude + ", " + position.coords.longitude);
+//                alert(position.coords.latitude + ", " + position.coords.longitude);
                 document.getElementById('location-cord').innerHTML = "Lat: <span class=\"cord-value\">" + position.coords.latitude + "</span>, Long: <span class=\"cord-value\">" + position.coords.longitude + "</span>";
                 showAddress(position.coords.latitude,position.coords.longitude);
             });
@@ -64,7 +53,7 @@
                     geocoder.geocode({ 'latLng': point }, function (results, status) {
                         if (status == google.maps.GeocoderStatus.OK) {
                             if (results[0]) {
-                                //                                alert(results[0].formatted_address);
+//                                alert(results[0].formatted_address);
                                 document.getElementById('location-name').innerHTML = "<span class=\"cord-value\">" + results[0].formatted_address + "</span>";
                                 $(function() { 
                                     demo.add(function() {
@@ -99,23 +88,21 @@
         </script>
     </head> 
     <body> 
-        <div id="wrap">
+
         <!-- Start of the page: #home -->
         <div data-role="page" id="home" data-theme="b" class="page-containar"> 
             <!-- page 1 | Header   -->
             <div data-role="header" data-theme="d"> 
-                <h1 align="center">TWMS</h1> 
+                <h1>TWMS</h1> 
             </div> <!--END header -->
             <!-- page 1 | content  -->
             <div data-role="content">
 
-                <h1>Welcome to TWMS</h1><div id="result"></div>
-                <p><a href="#photo" data-role="button" data-transition="none" class="main_page_button take_photo" onclick="capturePhoto();">Take Photo</a></p>
-                <div id="h_link" class="">
-                    <p><a href="#photo" data-role="button" data-transition="none" class="main_page_button" data-theme="b" id="h_link">Send Incident</a></p>
-                    <p><a href="#geo-location" data-role="button" data-transition="none" class="main_page_button " data-theme="e" id="h_link">View Location</a></p>
-                </div>
-                <p><a href="" data-role="button" data-transition="none" data-theme="a" data-icon="info" onClick="showInfo()">Your Information</a></p>
+                <p> <h1>Welcome to TWMS</h1> </p>
+                <p><a href="#photo" data-role="button" data-transition="none">Take Photo</a></p>
+                <p><a href="#photo" data-role="button" data-transition="none">Send Incident</a></p>
+                <p><a href="#geo-location" data-role="button" data-transition="none">View Location</a></p>
+                <p><a href="#photo" data-role="button" data-mini="true" data-transition="none">Your Information</a></p>
 
             </div><!-- /content --> 
 
@@ -135,7 +122,7 @@
                 <div data-role="controlgroup" data-type="horizontal">
                     <a href="index.html" data-role="button">Yes</a>
                     <a href="index.html" data-role="button">No</a>
-
+                    
                 </div>
 
                 <div>
@@ -187,7 +174,7 @@
             <div data-role="header" data-position="fixed" data-theme="d"> 
                 <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
                 <h1>TWMS</h1> 
-                <a href="#submit-info" data-theme="b" data-mini="true" data-icon="forward" data-iconpos="right" data-direction="reverse">Submit</a>
+                 <a href="#submit-info" data-theme="b" data-mini="true" data-icon="forward" data-iconpos="right" data-direction="reverse">Submit</a>
             </div> 
             <!-- page 3 | content  -->
             <div data-role="content" class="box"> 
@@ -218,14 +205,13 @@
 
 
         </div><!--  /page 3  -->
-
+        
         <!-- 
         page 4 | 
         .................................................................... -->
         <div data-role="page" id="submit-info" data-theme="b"> 
 
             <div data-role="header" data-position="fixed" data-theme="d"> 
-                <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
                 <h1>TWMS</h1> 
             </div> 
             <!-- page 4 | content ------------------------------------------ -->
@@ -234,18 +220,16 @@
                 <label>Email:</label>
                 <label>Category:</label>
                 <label>Location:</label>
-                <div id="location-name" class="cord-info"></div>
+                    <div id="location-name" class="cord-info"></div>
                 <label>Remark:</label>
-
-                <a href="#thanks" name="submit_data" data-theme="b" data-direction="reverse" data-ajax="false">Submit</a>
-
-
-                <!--                 <button type="submit" data-theme="b" name="submit_data" value="submit-data" data-ajax="false">Submit</button>-->
+                
+                
+                 <button type="submit" data-theme="b" name="submit_data" value="submit-data" data-ajax="false">Submit</button>
             </div>
-
+            
 
         </div><!--  /page 4  -->
-
+        
         <!-- 
         page 5 | 
         .................................................................... -->
@@ -256,10 +240,10 @@
             </div> 
             <!-- page 5 | content ------------------------------------------ -->
             <div data-role="content"> 
-                <p> <h3>Thank you for submitting the information. </h3> </p>
+                <p> Thank you for submitting the information. </p>
             </div><!-- /content -->
 
         </div><!--  /page 5  -->
-</div>
+
     </body>
 </html>

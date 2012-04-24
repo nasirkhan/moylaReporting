@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="../js/phonegap-1.4.1.js"></script>
+        <script type="text/javascript" src="../js/camera-all.js"></script>
+
+        <script type="text/javascript" src="../js/geoLocation.js"></script>
+        <!-- CSS for map -->
+        <link type="text/css" rel="stylesheet" href="../css/style.css" />
+        <!--js for map ui-->
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+
+        <script type="text/javascript" src="../js/underscore.min.js"></script>
+        <script type="text/javascript" src="../js/backbone.min.js"></script>
+        <script type="text/javascript" src="../js/prettify.min.js"></script>
+        <script type="text/javascript" src="../js/demo.js"></script>
+        <script type="text/javascript" src="../js/jquery.ui.map.js"></script>
+        <script type="text/javascript">     
+            navigator.geolocation.getCurrentPosition(function(position) {
+                alert(position.coords.latitude + ", " + position.coords.longitude);
+                showAddress(position.coords.latitude,position.coords.longitude);
+            });
+	
+            function showAddress(latitude,longitude){
+                var mapcoordain = latitude+','+longtitude;
+                var geocoder = new google.maps.Geocoder();
+                var point = new google.maps.LatLng(latitude,longitude);//23.7442812,90.3728129
+
+                if (geocoder) {
+                    geocoder.geocode({ 'latLng': point }, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                alert(results[0].formatted_address);
+                                $(function() { 
+                                    demo.add(function() {
+                                        $('#map_canvas').gmap({
+                                            'center': mapcoordain, 
+                                            'zoom': 16, 
+                                            'disableDefaultUI':true, 
+                                            'callback': function() {
+                                                var self = this;
+                                                self.addMarker({
+                                                    'position': this.get('map').getCenter()
+                                                }).click(function() {
+                                                    self.openInfoWindow({
+                                                        'content': 'Your Current Location'
+                                                    }, this);
+                                                });	
+                                            }
+                                        });
+                                    }).load();
+                                });
+                            } 
+                            else {
+                                console.log('No results found');
+                            }
+                        } 
+                        else {
+                            console.log('Geocoder failed due to: ' + status);
+                        }
+                    });
+                }
+            }   
+        </script>
+    </head>
+    <body>
+
+        <div id="geo-locaion">
+            <div class="mapGeo">
+
+                <div id="map_canvas" class="map"></div>
+
+            </div>
+        </div>
+
+    </body>
+</html>

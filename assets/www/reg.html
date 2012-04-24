@@ -1,58 +1,69 @@
 <!DOCTYPE html> 
 <html> 
-	<head> 
-		<title>Waste Management System</title> 
-		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
-		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>
-		<script type="text/javascript" charset="utf-8" src="main.js"></script>
-	
-	</head> 
-	<body >
-	<div data-role="page" data-theme="a">
+    <head> 
+        <title>Waste Management System</title> 
 
-		<div data-role="header" data-theme="a">
-			<h2>Waste Management System</h2>
-		</div><!-- /header -->
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-		<div data-role="content" data-theme="a">	
-			<h1 align="center">Information</h1>	
-			<form name="reg" id ="reg" action="index.html">
-			 
-    			
-			<div data-role="fieldcontain" data-theme="a">
-				<div style="height:80%;width:10%;float:left;">
-			    	<label for="name">Name:</label></br>
-			    	<label for="flip-min">Select Gender:</label></br>
-			    	<label for="cell">Cell Number:</label>
-			    	</div>
-			    <div style="height:80%;width:90%;float:left;">
-    				<input type="text" name="name" id="name" value=""  /><br>
-    				<select name="slider" id="flip-min" data-role="slider">
-						<option value="off">Male</option>
-						<option value="on">Female</option>
-					</select> </br>
-			
-    				<input type="text" name="cell" id="cell" value=""  />
-    				</div>
-    			<div style="height:85%;width:100%;float:left;">
-    				<a href="" data-role="button"  Input type="submit" data-mini="false">Submit</a>
-    			
+        <link rel="stylesheet" href="css/jquery.mobile-1.0.1.min.css" /> 
+        <link rel="stylesheet" href="css/style.css" /> 
 
-			</div>	
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script> 
+        <script type="text/javascript" src="js/jquery.mobile-1.0.1.min.js"></script>
+        <script type="text/javascript" src="js/phonegap-1.4.1.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
 
-			
-		</form>
+        
 
-	</div><!-- /content -->
-	
-	<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="a">
-	<div data-role="navbar">
-		
-	</div><!-- /navbar -->
-</div><!-- /footer -->
-</div><!-- /page -->
+    </head> 
+    <body >
+        <div data-role="page" id="p-reg" data-theme="c"> 
+            <!-- page 1 | Header  ------------------------------------------------------ -->
+            <div data-role="header" data-theme="d"> 
+                <h1>TWMS</h1> 
+            </div> <!--END header -->
+            <!-- page 1 | content ------------------------------------------------------ -->
+            <div data-role="content">
 
-</body>
+
+                <h1 align="center">Registration</h1>	
+                <form name="reg" id ="reg" action="index3.html">
+                    <fieldset>
+                        <div data-role="fieldcontain" data-mini="true">
+                            <label for="familyName">Family Name:</label>
+                            <input type="text" name="familyName" id="familyName" required />
+                            <label for="initials">Initials:</label>
+                            <input type="text" name="initials" id="initials"  />                            
+                            <label for="flip-a">Gender:</label>                                
+                            <fieldset data-role="controlgroup" data-mini="true">                                
+                                <input type="radio" name="gender" id="radio-mini-1" value="male" />                                    
+                                <label for="radio-mini-1">Male</label>
+
+                                <input type="radio" name="gender" id="radio-mini-2" value="female"  />                                    
+                                <label for="radio-mini-2">Female</label>
+
+                                <input type="radio" name="gender" id="radio-mini-3" value="other"  />                                    
+                                <label for="radio-mini-3">Other</label>
+                            </fieldset>
+                            <label for="b_year">Year of Birth:</label>
+                            <input type="text" name="b_year" id="b_year" value="" placeholder="Enter the Year Only" />
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" id="email" value="" placeholder="Enter Email Address" required />
+                            <label for="phone">Phone:</label>
+                            <input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" />
+                        </div>
+                        <a href="index3.html" data-role="button" onClick="storeInfo()" >Submit</a>
+                        <a data-role="button" onClick="showInfo()" >show</a>
+                        <a href="index3.html" data-role="button" >Next</a>
+                    </fieldset>
+
+
+                </form>
+<div id="result"></div>
+            </div><!-- /content -->
+
+
+        </div><!-- /page -->
+
+    </body>
 </html>

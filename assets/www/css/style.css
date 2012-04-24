@@ -1,0 +1,70 @@
+.map{
+/*    width: 306px;*/
+    height: 180px;
+    border: 1px solid #000;
+    background: url('images/map.jpg');
+}
+.w300{
+    width: 300px;
+}
+.cord-info{
+    background: #75ADDA;
+    border: 1px solid #2A2A2A;
+    padding: 3px;
+    text-shadow: none;
+    text-align: center;
+}
+.cord-value{
+    font-weight: bold;
+}
+.box{
+    margin: auto;  
+    text-align: center;
+}
+.image-thumb{
+    display:none;
+    border: 1px solid #2373a5;
+    height:60px;
+    width:60px;
+}
+.image-div{
+    float: left;
+}
+.image-div-m{
+    border: 1px solid #2373a5;
+}
+.submit-info{
+    background: #75ADDA;
+    border: 1px solid #2A2A2A;
+    padding: 3px;
+    text-shadow: none;
+    text-align: center;
+}
+.page-containar{
+    width: 100%;
+    height: 100%;
+}
+div#wrap{
+    overflow: hidden;
+}
+.ui-btn-corner-all{
+    border-radius: .3em;
+}
+a.main_page_button{
+    height: 60px;
+}
+a.main_page_button span{
+    height: 40px;
+    padding-top: 13px;
+    font-size: 24px;
+}
+a.take_photo{
+/*    background: #33cc00;*/
+    background: #29cc10; /* Old browsers */
+    background: -moz-linear-gradient(top,  #29cc10 0%, #299a0b 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#29cc10), color-stop(100%,#299a0b)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #29cc10 0%,#299a0b 100%); /* Chrome10+,Safari5.1+ */
+    background: linear-gradient(top,  #29cc10 0%,#299a0b 100%); /* W3C */
+
+
+}

@@ -1,57 +1,311 @@
-<!DOCTYPE html> 
-<html> 
-	<head> 
-		<title>Take Picture</title> 
-		<style type="text/css">
-				#hlFind .ui-icon-custom {
-    					background:url("images/sss.png") no-repeat scroll 0 0 transparent;
-				}
-		</style>
-		
-		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
-		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>
-		<script type="text/javascript" charset="utf-8" src="pic.js"></script>
-		<!-- <script type="text/javascript" charset="utf-8" src="geoLocation.js"></script> -->
-		<script type="text/javascript" src="phonegap-1.4.1.js"></script>
-		
+<!DOCTYPE HTML>
+
+<html>
+
+    <head>
+
+        <title>Welcome to TWMS</title>
+        
+        <link rel="stylesheet" href="css/jquery.mobile-1.0.1.min.css" /> 
+        <link rel="stylesheet" href="css/style.css" />
+        
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.0.1.min.js"></script>
+        <script type="text/javascript" src="js/phonegap-1.4.1.js"></script>
+        
+        <script type="text/javascript" src="js/camera-all.js"></script>
+        <script type="text/javascript" src="js/uploadpic.js"></script>
+<!--        <script type="text/javascript" src="js/geoLocation.js"></script>-->
+        <!-- CSS for map -->
+        
+        <!--js for map ui-->
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+        <script type="text/javascript" src="js/underscore.min.js"></script>
+        <script type="text/javascript" src="js/backbone.min.js"></script>
+        <script type="text/javascript" src="js/prettify.min.js"></script>
+        <script type="text/javascript" src="js/demo.js"></script>
+        <script type="text/javascript" src="js/jquery.ui.map.js"></script>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+        <script type="text/javascript">
+             
+            document.addEventListener("deviceready",onDeviceReady,false);
+
+            // PhoneGap is ready to be used!
+            //
+            function onDeviceReady() {
+                //Camera and Gallery
+                pictureSource=navigator.camera.PictureSourceType;
+                destinationType=navigator.camera.DestinationType;
+                
+                //GPS Service
+//                navigator.geolocation.getCurrentPosition(onGPSSuccess, onGPSError);
+//                var url = "https://maps.google.com/maps/api/geocode/json?latlng=23.7442812,90.3728129&sensor=false";
+//                $.getJSON(url, function(data)
+//                {
+//                   // alert(data.toString());    
+//
+//                }
+//
+//            );
+            
+                
+            }
+            
+        </script>
+        <script type="text/javascript">     
+            navigator.geolocation.getCurrentPosition(function(position) {
+//                alert(position.coords.latitude + ", " + position.coords.longitude);
+                document.getElementById('location-cord').innerHTML = "Lat: <span class=\"cord-value\">" + position.coords.latitude + "</span>, Long: <span class=\"cord-value\">" + position.coords.longitude + "</span>";
+                showAddress(position.coords.latitude,position.coords.longitude);
+            });
 	
-	</head> 
-	<body >
-		<div data-role="page" data-theme="a">
+            function showAddress(latitude,longitude){
+                var mapcoordain = latitude+','+longitude;
+                var geocoder = new google.maps.Geocoder();
+                var point = new google.maps.LatLng(latitude,longitude);//23.7442812,90.3728129
 
-			<div data-role="header" data-theme="a">
-				<h2>Waste Management System</h2>
-		
-			</div><!-- /header -->
+                if (geocoder) {
+                    geocoder.geocode({ 'latLng': point }, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+//                                alert(results[0].formatted_address);
+                                document.getElementById('location-name').innerHTML = "<span class=\"cord-value\">" + results[0].formatted_address + "</span>";
+                                $(function() { 
+                                    demo.add(function() {
+                                        $('#map_canvas').gmap({
+                                            'center': mapcoordain, 
+                                            'zoom': 17, 
+                                            'disableDefaultUI':true, 
+                                            'callback': function() {
+                                                var self = this;
+                                                self.addMarker({
+                                                    'position': this.get('map').getCenter()
+                                                }).click(function() {
+                                                    self.openInfoWindow({
+                                                        'content': 'Your Current Location'
+                                                    }, this);
+                                                });	
+                                            }
+                                        });
+                                    }).load();
+                                });
+                            } 
+                            else {
+                                console.log('No results found');
+                            }
+                        } 
+                        else {
+                            console.log('Geocoder failed due to: ' + status);
+                        }
+                    });
+                }
+            }   
+        </script>
+        
 
-		<div data-role="content" data-theme="a">	
-			<h1 align="center">Get Picture/s of Waste</h1>
-			
-			<div style="height:80%;width:100%;float:left;">
-				<button  data-role="button" data-icon="home" data-iconpos="top"  onclick="capturePhoto();">Get a Picture </button>
-			</div>
-			
-			
-			<!-- /taking picture will show below -->
-			<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-		    <img style="display:none;" id="largeImage" src="" />
-		</div><!-- /content -->
-		<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="a">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="index.html" class="ui-btn-active"  data-icon="home">Take Picture</a></li>
-					<li><a href="picGallery.html"  data-icon="home" >Picture Gallery</a></li>
-					<li><a href="gap-geo.html" data-icon="home" >GEO Tag</a></li>
-					<!-- <li><a href="geoTag.html" data-icon="home" >GEO Tag</a></li> -->					
-					<li><a href="type.html"  data-icon="home">Select Type</a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /footer -->
-	
+    </head>
 
-</div><!-- /page -->
+    <body>
 
-</body>
+        <!--
+        page 1 | user login and registration
+        .................................................................... -->
+        <div data-role="page" id="home" data-theme="b"> 
+            <!-- page 1 | Header  ------------------------------------------------------ -->
+            <div data-role="header" data-theme="d"> 
+                <h1>TWMS</h1> 
+            </div> <!--END header -->
+            <!-- page 1 | content ------------------------------------------------------ -->
+            <div data-role="content">
+
+                <p> <h1>Welcome to TWMS</h1> </p>
+            
+                
+                <!--                <p>
+                                <form action="#page2-photo" method="get">
+                                    <fieldset>
+                                        <div data-role="fieldcontain">
+                                            <label for="name">Name:</label>
+                                            <input type="text" name="name" id="name" value=""  />
+                                            <label for="name">Email:</label>
+                                            <input type="email" name="email" id="email" value=""  />
+                                        </div>
+                                        <button type="submit" data-theme="b" name="submit" value="submit-value">Submit</button>
+                                    </fieldset>
+                                </form>
+                                </p>-->
+
+            </div><!--END content --> 
+
+            <!-- page 1 | footer ------------------------------------------------------- -->
+            <div data-role="footer" data-id="foo1" data-position="fixed" data-fullscreen="true" data-theme="a">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a class="clear-round ui-btn-active" href="#home" data-role="button" data-transition="none" >You</a></li>
+                        <li><a class="clear-round" href="#page2-photo" data-role="button" data-transition="none">Photo</a></li>
+                        <li><a class="clear-round" href="#geo-location" data-role="button" data-transition="none">Location</a></li>
+                        <li><a class="clear-round" href="#submit-info" data-role="button" data-transition="none">Submit</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
+        </div> <!--END page 1 -->
+
+        <!-- 
+        page 2 | Capture photo 
+        .................................................................... -->
+        <div data-role="page" id="page2-photo" data-theme="b"> 
+            <div data-role="header" data-position="fixed" data-theme="d"> 
+                <h1>TWMS</h1> 
+            </div>
+
+            <!-- page 2 | content .......................................... -->
+            <div data-role="content">
+                <p>Capture a photo or select form the gallery.</p>                
+
+                <button  data-role="button" onclick="capturePhoto();">Capture Photo</button> 
+                <button  data-role="button" onclick="getPhoto(pictureSource.PHOTOLIBRARY);">Select form Gallery </button> 
+
+                <p>
+                <div>
+                    <img class="image-thumb" id="smallImage" src="" />
+                </div>
+                <div id="image-display">
+                    <div id="camera-iamge" class="image-div">
+                        <img style="display:none;width:60px;height:60px; float:left; padding-right:5px;" id="smallImage" src="" />
+                    </div>
+                    <div id="gallery-image" class="image-div">
+                        <!--                <img style="display:none;width:60px;height:60px;" id="largeImage" src="" />-->
+                    </div>
+                    <!--                    <div id="image-count">
+                                        </div>-->
+
+                </div>
+
+                <div data-role="fieldcontain">
+                    <label for="select-choice-1" class="select">Choose from options:</label>
+                    <select name="select-choice-1" id="select-choice-1">
+                        <option value="o00">Select the Category</option>
+                        <option value="o1">Overige meldingen</option>
+                        <option value="o2">Schade aan privÃ© objecten</option>
+                        <option value="o3">Beschadiging aan gemeentelijke objecten</option>
+                        <option value="o4">Zwerfvuil</option>
+                        <option value="o5">Zinloos geweld</option>
+                        <option value="o6">Openbare vechtpartij</option>
+                        <option value="o7">Auto ongeluk</option>
+                        <option value="o8">Fiets ongeluk</option>
+                        <option value="o9">Hondenpoep</option>
+                        <option value="o10">Openbare dronkenschap</option>
+                        <option value="o11">Overige geweldmisdrijf</option>
+                        <option value="o12">Inbraak</option>
+                        <option value="o13">Overige misdrijven</option>
+
+                    </select>
+                </div>
+               
+                </p>
+
+            </div><!--END content -->
+
+            <!-- page 2 | footer ........................................... -->
+            <div data-role="footer" data-id="foo1" data-position="fixed" data-fullscreen="true" data-theme="a">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a class="clear-round" href="#home" data-role="button" data-transition="none">You</a></li>
+                        <li><a class="clear-round ui-btn-active" href="#page2-photo" data-role="button" data-transition="none">Photo</a></li>
+                        <li><a class="clear-round" href="#geo-location" data-role="button" data-transition="none">Location</a></li>
+                        <li><a class="clear-round" href="#submit-info" data-role="button" data-transition="none">Submit</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
+
+        </div><!--  END page 2  -->
+
+        <!-- 
+        page 3 | Geo location
+        .................................................................... -->
+        <div data-role="page" id="geo-location" data-theme="b"> 
+
+            <div data-role="header" data-position="fixed" data-theme="d"> 
+                <h1>TWMS</h1> 
+            </div> 
+            <!-- page 3 | content ------------------------------------------ -->
+            <div data-role="content" class="box"> 
+
+                <p><a href="#re-cord" data-role="button">Recheck Location</a></p>
+                <!--current location on the map-->
+                <p> 
+                <div id="geo-locaion">
+                    <div class="mapGeo">
+                        <div>
+                            <div id="map_canvas" class="map"></div>
+                        </div>
+                    </div>
+                </div>
+
+                </p>
+                <!--location information. coordinate and location name-->
+                <p>
+                    <!--                <div id="location-name" class="cord-info"><span class="cord-value">Road 8/A, Dhanmondi, Dhaka, Bangladesh</span></div>-->
+                <div id="location-name" class="cord-info"></div>
+                </p>
+                <p>
+                    <!--                <div id="location-cord" class="cord-info">Lat: <span class="cord-value">23.7510521</span>, Long: <span class="cord-value">90.4217713</span></div>-->
+                <div id="location-cord" class="cord-info"></div>
+                </p>
+
+
+
+
+
+
+            </div>
+            <!-- page 3 | footer ------------------------------------------- -->
+            <div data-role="footer" data-id="foo1" data-position="fixed" data-fullscreen="true" data-theme="a">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a class="clear-round" href="#home" data-role="button" data-transition="none">You</a></li>
+                        <li><a class="clear-round" href="#page2-photo" data-role="button" data-transition="none">Photo</a></li>
+                        <li><a class="clear-round ui-btn-active" href="#geo-location" data-role="button" data-transition="none">Location</a></li>
+                        <li><a class="clear-round" href="#submit-info" data-role="button" data-transition="none">Submit</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
+
+        </div><!--  END page 3  -->
+
+        <!-- 
+        page 4 | 
+        .................................................................... -->
+        <div data-role="page" id="submit-info" data-theme="b"> 
+
+            <div data-role="header" data-position="fixed" data-theme="d"> 
+                <h1>TWMS</h1> 
+            </div> 
+            <!-- page 4 | content ------------------------------------------ -->
+            <div data-role="content"> 
+                
+                <div id="location-name" class="cord-info"></div>
+                    
+
+            </div>
+            <!-- page 4 | footer ------------------------------------------- -->
+            <div data-role="footer" data-id="foo1" data-position="fixed" data-fullscreen="true" data-theme="a">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a class="clear-round" href="#home" data-role="button" data-transition="none">You</a></li>
+                        <li><a class="clear-round" href="#page2-photo" data-role="button" data-transition="none">Photo</a></li>
+                        <li><a class="clear-round" href="#geo-location" data-role="button" data-transition="none">Location</a></li>
+                        <li><a class="clear-round ui-btn-active" href="#submit-info" data-role="button"  data-transition="none">Submit</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
+
+        </div><!--  END page 4  -->
+
+
+
+    </body>
+
 </html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Waste Management System</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" href="css/jquery.mobile-1.0.1.min.css" /> 
+        <link rel="stylesheet" href="css/style.css" /> 
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script> 
+        <script type="text/javascript" src="js/jquery.mobile-1.0.1.min.js"></script>
+        <script type="text/javascript" src="js/phonegap-1.4.1.js"></script>
+<!--        <script type="text/javascript" charset="utf-8" src="main.js"></script>-->
+
+    </head> 
+    <body >
+        <div data-role="page" data-theme="b">
+
+            <div data-role="header" data-theme="b">
+                <h2>Waste Management System</h2>
+            </div><!-- /header -->
+
+            <div data-role="content" data-theme="b">	
+                <h1 align="center">Information</h1>	
+                <form name="reg" id ="reg" action="index.html">
+                    
+                    <fieldset>
+                        <div data-role="fieldcontain">
+                            <label for="name">Name:</label>
+                            <input type="text" name="name" id="name" value=""  />
+                            <label for="name">Email:</label>
+                            <input type="email" name="email" id="email" value=""  />
+                        </div>
+                        <button type="submit" data-theme="b" name="submit" value="submit-value">Submit</button>
+                    </fieldset>
+
+
+                </form>
+
+            </div><!-- /content -->
+
+            <div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
+                <div data-role="navbar">
+
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
+        </div><!-- /page -->
+
+    </body>
+</html>
