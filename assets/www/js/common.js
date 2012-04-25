@@ -17,6 +17,9 @@ function firstRunCheck(){
     if (firstRun==null){
         window.open('#p-reg');        
     }
+    else{
+        loadRegForm();
+    }
 }
 function genderChecke()
 {
@@ -79,3 +82,25 @@ function showInfo(){
 }
 
 
+function loadRegForm(){
+    var loadRegElement = document.getElementById("reg_form_input");
+    loadRegElement.innerHTML = "<label for=\"familyName\">Family Name:</label>";
+    loadRegElement.innerHTML += "<input type=\"text\" name=\"familyName\" id=\"familyName\" required placeholder=\"" + window.localStorage.getItem("familyName") + "\" />";
+    loadRegElement.innerHTML += "<label for=\"initials\">Initials:</label>";
+    loadRegElement.innerHTML += "<input type=\"text\" name=\"initials\" id=\"initials\" placeholder=\"" + window.localStorage.getItem("initials") + "\"  />";
+    loadRegElement.innerHTML += "<label for=\"flip-a\">Gender:</label>  ";
+    loadRegElement.innerHTML += "<label for=\"flip-a\">Gender:</label>  ";
+    loadRegElement.innerHTML += "<fieldset data-role=\"controlgroup\" data-mini=\"true\"> ";
+    loadRegElement.innerHTML += "<input type=\"radio\" name=\"gender\" id=\"radio-mini-1\" value=\"male\" />   ";
+    loadRegElement.innerHTML += "<label for=\"radio-mini-1\">Male</label>";
+    loadRegElement.innerHTML += "<input type=\"radio\" name=\"gender\" id=\"radio-mini-2\" value=\"female\"  />     ";
+    loadRegElement.innerHTML += "<label for=\"radio-mini-2\">Female</label>";
+    loadRegElement.innerHTML += "<input type=\"radio\" name=\"gender\" id=\"radio-mini-3\" value=\"other\"  />    ";
+    loadRegElement.innerHTML += "<label for=\"radio-mini-3\">Other</label></fieldset>";
+    loadRegElement.innerHTML += "<label for=\"b_year\">Year of Birth:</label>";
+    loadRegElement.innerHTML += "<input type=\"text\" name=\"b_year\" id=\"b_year\" value=\"\" placeholder=\"" + window.localStorage.getItem("b_year") + "\" />";
+    loadRegElement.innerHTML += "<label for=\"email\">Email:</label>";
+    loadRegElement.innerHTML += "<input type=\"email\" name=\"email\" id=\"email\" value=\"\" placeholder=\"" + window.localStorage.getItem("email") + "\" required />";
+    loadRegElement.innerHTML += "<label for=\"phone\">Phone:</label>";
+    loadRegElement.innerHTML += "<input type=\"text\" name=\"phone\" id=\"phone\" value=\"\" placeholder=\"" + window.localStorage.getItem("phone") + "\" />";   
+}
