@@ -68,3 +68,6 @@ a.take_photo{
 
 
 }
+.submit_page_label label{
+    font-weight: bold;
+}

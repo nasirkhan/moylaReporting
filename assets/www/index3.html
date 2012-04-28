@@ -45,7 +45,8 @@
             }
             
         </script>
-        <script type="text/javascript">     
+        <script type="text/javascript"> 
+            var location_full_name;
             navigator.geolocation.getCurrentPosition(function(position) {
                 //                alert(position.coords.latitude + ", " + position.coords.longitude);
                 document.getElementById('location-cord').innerHTML = "Lat: <span class=\"cord-value\">" + position.coords.latitude + "</span>, Long: <span class=\"cord-value\">" + position.coords.longitude + "</span>";
@@ -63,6 +64,10 @@
                             if (results[0]) {
                                 //                                alert(results[0].formatted_address);
                                 document.getElementById('location-name').innerHTML = "<span class=\"cord-value\">" + results[0].formatted_address + "</span>";
+                                
+                                location_full_name = results[0].formatted_address;
+                                window.localStorage.setItem("location_full_name", location_full_name);
+                                
                                 $(function() { 
                                     demo.add(function() {
                                         $('#map_canvas').gmap({
@@ -106,7 +111,7 @@
                 <!-- page 1 | content  -->
                 <div data-role="content">
 
-                    <h1>Welcome to TWMS</h1>
+                    <h1 align="center">Welcome to TWMS</h1>
                     <p><a href="#photo" data-role="button" data-transition="none" class="main_page_button take_photo" onclick="capturePhoto();">Take Photo</a></p>
                     <div id="h_link" class="">
                         <p><a href="#photo" data-role="button" data-transition="none" class="main_page_button" data-theme="b" id="h_link">Send Incident</a></p>
@@ -122,16 +127,16 @@
             <div data-role="page" id="photo" data-theme="b"> 
                 <!-- page 2 | Header   -->
                 <div data-role="header" data-theme="d"> 
-                    <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
-                    <h1>TWMS</h1>
-                    <a href="#geo-location" data-theme="b" data-mini="true" data-icon="forward" data-iconpos="right" data-direction="reverse">Location</a>
+                    <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse" data-transition="none">Home</a>
+                    <h1 align="center">TWMS</h1>
+                    <a href="#geo-location" data-theme="b" data-mini="true" data-icon="forward" data-iconpos="right" data-direction="reverse" onclick="storeAdditionalRemarkText();" data-transition="none">Location</a>
                 </div> <!--END header -->
                 <!-- page 2 | content  -->
                 <div data-role="content">
 
-                    <div data-role="controlgroup" data-type="horizontal">
-                        <a href="index.html" data-role="button">Yes</a>
-                        <a href="index.html" data-role="button">No</a>
+                    <div data-role="controlgroup" data-type="vartical" >
+                        <a href="" data-role="button" onclick="capturePhoto();" class="take_photo" >Take Photo</a>
+                        <a href="" data-role="button" onclick="getPhoto(pictureSource.PHOTOLIBRARY);" >Select from gallery</a>
 
                     </div>
 
@@ -146,8 +151,8 @@
                     </div>
 
                     <div data-role="fieldcontain">
-                        <label for="select-choice-1" class="select">Choose from options:</label>
-                        <select name="select-choice-1" id="select-choice-1">
+                        <label for="category_select" class="select">Choose from options:</label>
+                        <select name="category_select" id="category_select">
                             <option value="o00">Select the Category</option>
                             <option value="o1">Overige meldingen</option>
                             <option value="o2">Schade aan privé objecten</option>
@@ -162,13 +167,28 @@
                             <option value="o11">Overige geweldmisdrijf</option>
                             <option value="o12">Inbraak</option>
                             <option value="o13">Overige misdrijven</option>
-
                         </select>
                     </div>
+                    	
+<fieldset data-role="controlgroup">
+	<legend>Choose a pet:</legend>
+     	<input type="radio" name="radio-choice-1" id="radio-choice-1" value="Openbare dronkenschap" checked="checked" />
+     	<label for="radio-choice-1">Openbare dronkenschap</label>
+
+     	<input type="radio" name="radio-choice-1" id="radio-choice-2" value="Overige geweldmisdrijf"  />
+     	<label for="radio-choice-2">Overige geweldmisdrijf</label>
+
+     	<input type="radio" name="radio-choice-1" id="radio-choice-3" value="Inbraak"  />
+     	<label for="radio-choice-3">Inbraak</label>
+
+     	<input type="radio" name="radio-choice-1" id="radio-choice-4" value="Overige misdrijven"  />
+     	<label for="radio-choice-4">Overige misdrijven</label>
+</fieldset>
+
 
                     <div data-role="fieldcontain">
                         <label for="textarea">Additional remark:</label>
-                        <textarea name="textarea" id="textarea" placeholder="Write a description..."></textarea>
+                        <textarea name="textarea" id="additional_remark_text" placeholder="Write a description..."></textarea>
                     </div>
 
 
@@ -182,9 +202,9 @@
             <div data-role="page" id="geo-location" data-theme="b"> 
 
                 <div data-role="header" data-position="fixed" data-theme="d"> 
-                    <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
-                    <h1>TWMS</h1> 
-                    <a href="#submit-info" data-theme="b" data-mini="true" data-icon="forward" data-iconpos="right" data-direction="reverse">Submit</a>
+                    <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse" data-transition="none">Home</a>
+                    <h1 align="center">TWMS</h1> 
+                    <a href="#submit-info" data-theme="b" data-mini="true" data-icon="forward" data-iconpos="right" data-direction="reverse" onclick="loadSubmitPage();" data-transition="none">Submit</a>
                 </div> 
                 <!-- page 3 | content  -->
                 <div data-role="content" class="box"> 
@@ -222,19 +242,21 @@
             <div data-role="page" id="submit-info" data-theme="b"> 
 
                 <div data-role="header" data-position="fixed" data-theme="d"> 
-                    <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
-                    <h1>TWMS</h1> 
+                    <a href="#home" data-icon="home" data-iconpos="notext" data-direction="reverse" data-transition="none">Home</a>
+                    <h1 align="center">TWMS</h1> 
                 </div> 
                 <!-- page 4 | content ------------------------------------------ -->
                 <div data-role="content"> 
-                    <label>Family Name:</label>
-                    <label>Email:</label>
-                    <label>Category:</label>
-                    <label>Location:</label>
-                    <div id="location-name" class="cord-info"></div>
-                    <label>Remark:</label>
+                    <h3 align="center"> Sending Information </h3>
+                    <div id="submit_page" class="submit_page_label">
+                        <label>Family Name:</label><br />
+                        <label>Email:</label><br />
+                        <label>Category:</label><br />
+                        <label>Location:</label><br />
+                        <label>Remark:</label><br />
+                    </div>
 
-                    <a href="#thanks" name="submit_data" data-theme="b" data-direction="reverse" data-ajax="false">Submit</a>
+                    <a href="#thanks" name="submit_data" data-theme="b" data-direction="reverse" data-ajax="false" data-role="button" data-transition="none" >Submit</a>
 
 
                     <!--                 <button type="submit" data-theme="b" name="submit_data" value="submit-data" data-ajax="false">Submit</button>-->
@@ -249,18 +271,18 @@
             <div data-role="page" id="thanks" data-theme="b"> 
 
                 <div data-role="header" data-position="fixed" data-theme="d"> 
-                    <h1>TWMS</h1> 
+                    <h1 align="center">TWMS</h1> 
                 </div> 
                 <!-- page 5 | content ------------------------------------------ -->
                 <div data-role="content"> 
-                    <p> <h3>Thank you for submitting the information. </h3> </p>
+                    <p> <h3 align="center">Thank you for submitting the information. </h3> </p>
                 </div><!-- /content -->
 
             </div><!--  /page 5  -->
             <div data-role="page" id="p-reg" data-theme="c"> 
                 <!-- page 1 | Header  ------------------------------------------------------ -->
                 <div data-role="header" data-theme="d"> 
-                    <h1>TWMS</h1> 
+                    <h1 align="center">TWMS</h1> 
                 </div> <!--END header -->
                 <!-- page 1 | content ------------------------------------------------------ -->
                 <div data-role="content">
@@ -269,37 +291,39 @@
                     <h1 align="center">Registration</h1>	
                     <form name="reg" id ="reg" action="index3.html">
                         <fieldset>
-                            <div data-role="fieldcontain" data-mini="true">
-                                <label for="familyName">Family Name:</label>
-                                <input type="text" name="familyName" id="familyName" required />
-                                <label for="initials">Initials:</label>
-                                <input type="text" name="initials" id="initials"  />                            
-                                <label for="flip-a">Gender:</label>                                
-                                <fieldset data-role="controlgroup" data-mini="true">                                
-                                    <input type="radio" name="gender" id="radio-mini-1" value="male" />                                    
-                                    <label for="radio-mini-1">Male</label>
+                            <div data-role="fieldcontain" data-mini="true" >
+                                <div id="reg_form_input">
+                                    <label for="familyName">Family Name:</label>
+                                    <input type="text" name="familyName" id="familyName" required />
+                                    <label for="initials">Initials:</label>
+                                    <input type="text" name="initials" id="initials"  />                            
+                                    <label for="flip-a">Gender:</label>                                
+                                    <fieldset data-role="controlgroup" data-mini="true">                                
+                                        <input type="radio" name="gender" id="radio-mini-1" value="male" />                                    
+                                        <label for="radio-mini-1">Male</label>
 
-                                    <input type="radio" name="gender" id="radio-mini-2" value="female"  />                                    
-                                    <label for="radio-mini-2">Female</label>
+                                        <input type="radio" name="gender" id="radio-mini-2" value="female"  />                                    
+                                        <label for="radio-mini-2">Female</label>
 
-                                    <input type="radio" name="gender" id="radio-mini-3" value="other"  />                                    
-                                    <label for="radio-mini-3">Other</label>
-                                </fieldset>
-                                <label for="b_year">Year of Birth:</label>
-                                <input type="text" name="b_year" id="b_year" value="" placeholder="Enter the Year Only" />
-                                <label for="email">Email:</label>
-                                <input type="email" name="email" id="email" value="" placeholder="Enter Email Address" required />
-                                <label for="phone">Phone:</label>
-                                <input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" />
+                                        <input type="radio" name="gender" id="radio-mini-3" value="other"  />                                    
+                                        <label for="radio-mini-3">Other</label>
+                                    </fieldset>
+                                    <label for="b_year">Year of Birth:</label>
+                                    <input type="text" name="b_year" id="b_year" value="" placeholder="Enter the Year Only" />
+                                    <label for="email">Email:</label>
+                                    <input type="email" name="email" id="email" value="" placeholder="Enter Email Address" required />
+                                    <label for="phone">Phone:</label>
+                                    <input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" />
+                                </div>
                             </div>
-                            <a href="index3.html" data-role="button" onClick="storeInfo()" >Submit</a>
-                            <a data-role="button" onClick="showInfo()" >show</a>
+                            <a href="index3.html" data-role="button" onClick="storeInfo()" data-transition="none" >Submit</a>
+<!--                            <a data-role="button" onClick="showInfo()" >show</a>-->
                             <!--                            <a href="index3.html" data-role="button" >Next</a>-->
                         </fieldset>
 
 
                     </form>
-                    <div id="result"></div>
+<!--                    <div id="result"></div>-->
                 </div><!-- /content -->
 
 

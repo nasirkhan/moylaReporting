@@ -33,6 +33,18 @@ function genderChecke()
     }
 }
 
+function categoryChecke()
+{
+    for (var i=0; i < document.reg.gender.length; i++)
+    {
+        if (document.reg.gender[i].checked)
+        {
+            gender = document.reg.gender[i].value;
+            window.localStorage.setItem("gender", gender);
+        }
+    }
+}
+
             
 function storeInfo(){
     genderChecke();
@@ -50,10 +62,6 @@ function storeInfo(){
     
     phone = document.getElementById("phone").value;
     window.localStorage.setItem("phone", phone);
-    
-    //phone = document.getElementById("phone").value;
-    
-                
                 
     var result = document.getElementById("result");
     result.innerHTML = "familyName: " + window.localStorage.getItem("familyName")  + " // ";
@@ -66,17 +74,22 @@ function storeInfo(){
     
     return false;
 }
-            
-function showInfo(){
-                
     
+    
+function storeAdditionalRemarkText(){
+    var additional_remark_text = document.getElementById("additional_remark_text").value;
+    window.localStorage.setItem("additional_remark_text", additional_remark_text);
+}
+
+
+function showInfo(){
     var result = document.getElementById("result");
     result.innerHTML = "familyName: " + window.localStorage.getItem("familyName")  + " // ";
-//    result.innerHTML += "initials: " + window.localStorage.getItem("initials")  + " // ";
-//    result.innerHTML += "gender: " + window.localStorage.getItem("gender")  + " // ";
-//    result.innerHTML += "initials: " + window.localStorage.getItem("b_year")  + " // ";
-//    result.innerHTML += "initials: " + window.localStorage.getItem("email")  + " // ";
-//    result.innerHTML += "initials: " + window.localStorage.getItem("phone")  + " // ";
+    //    result.innerHTML += "initials: " + window.localStorage.getItem("initials")  + " // ";
+    //    result.innerHTML += "gender: " + window.localStorage.getItem("gender")  + " // ";
+    //    result.innerHTML += "initials: " + window.localStorage.getItem("b_year")  + " // ";
+    //    result.innerHTML += "initials: " + window.localStorage.getItem("email")  + " // ";
+    //    result.innerHTML += "initials: " + window.localStorage.getItem("phone")  + " // ";
     
     return false;
 }
@@ -85,9 +98,9 @@ function showInfo(){
 function loadRegForm(){
     var loadRegElement = document.getElementById("reg_form_input");
     loadRegElement.innerHTML = "<label for=\"familyName\">Family Name:</label>";
-    loadRegElement.innerHTML += "<input type=\"text\" name=\"familyName\" id=\"familyName\" required placeholder=\"" + window.localStorage.getItem("familyName") + "\" />";
+    loadRegElement.innerHTML += "<input type=\"text\" name=\"familyName\" id=\"familyName\" required value=\"" + window.localStorage.getItem("familyName") + "\" />";
     loadRegElement.innerHTML += "<label for=\"initials\">Initials:</label>";
-    loadRegElement.innerHTML += "<input type=\"text\" name=\"initials\" id=\"initials\" placeholder=\"" + window.localStorage.getItem("initials") + "\"  />";
+    loadRegElement.innerHTML += "<input type=\"text\" name=\"initials\" id=\"initials\" value=\"" + window.localStorage.getItem("initials") + "\"  />";
     loadRegElement.innerHTML += "<label for=\"flip-a\">Gender:</label>  ";
     loadRegElement.innerHTML += "<label for=\"flip-a\">Gender:</label>  ";
     loadRegElement.innerHTML += "<fieldset data-role=\"controlgroup\" data-mini=\"true\"> ";
@@ -98,9 +111,20 @@ function loadRegForm(){
     loadRegElement.innerHTML += "<input type=\"radio\" name=\"gender\" id=\"radio-mini-3\" value=\"other\"  />    ";
     loadRegElement.innerHTML += "<label for=\"radio-mini-3\">Other</label></fieldset>";
     loadRegElement.innerHTML += "<label for=\"b_year\">Year of Birth:</label>";
-    loadRegElement.innerHTML += "<input type=\"text\" name=\"b_year\" id=\"b_year\" value=\"\" placeholder=\"" + window.localStorage.getItem("b_year") + "\" />";
+    loadRegElement.innerHTML += "<input type=\"text\" name=\"b_year\" id=\"b_year\" value=\"" + window.localStorage.getItem("b_year") + "\" />";
     loadRegElement.innerHTML += "<label for=\"email\">Email:</label>";
-    loadRegElement.innerHTML += "<input type=\"email\" name=\"email\" id=\"email\" value=\"\" placeholder=\"" + window.localStorage.getItem("email") + "\" required />";
+    loadRegElement.innerHTML += "<input type=\"email\" name=\"email\" id=\"email\" value=\"" + window.localStorage.getItem("email") + "\" required />";
     loadRegElement.innerHTML += "<label for=\"phone\">Phone:</label>";
-    loadRegElement.innerHTML += "<input type=\"text\" name=\"phone\" id=\"phone\" value=\"\" placeholder=\"" + window.localStorage.getItem("phone") + "\" />";   
+    loadRegElement.innerHTML += "<input type=\"text\" name=\"phone\" id=\"phone\"  value=\"" + window.localStorage.getItem("phone") + "\" />";   
+}
+
+
+function loadSubmitPage(){
+    var loadRegElement = document.getElementById("submit_page");
+    loadRegElement.innerHTML = "<label>Family Name: </label>" + window.localStorage.getItem("familyName") + "<br />";
+    loadRegElement.innerHTML += "<label>Email: </label>" + window.localStorage.getItem("email") + "<br />";
+    loadRegElement.innerHTML += "<label>Category: </label>" + window.localStorage.getItem("familyName") + "<br />";
+    loadRegElement.innerHTML += "<label>Location: </label>" + window.localStorage.getItem("location_full_name") + "<br />";
+    loadRegElement.innerHTML += "<label>Remark: </label>" + window.localStorage.getItem("additional_remark_text") + "<br />";
+    
 }
