@@ -1,2 +1,0 @@
-== Moyla Reporting ==
-Moyla Reporting is a [https://github.com/phonegap PhoneGap] based Android app. 
