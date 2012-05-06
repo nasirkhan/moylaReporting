@@ -47,7 +47,7 @@
             
         </script>
         <script type="text/javascript"> 
-            var location_full_name;
+            
             navigator.geolocation.getCurrentPosition(function(position) {
                 //                alert(position.coords.latitude + ", " + position.coords.longitude);
                 document.getElementById('location-cord').innerHTML = "Lat: <span class=\"cord-value\">" + position.coords.latitude + "</span>, Long: <span class=\"cord-value\">" + position.coords.longitude + "</span>";
@@ -68,6 +68,8 @@
                                 
                                 location_full_name = results[0].formatted_address;
                                 window.localStorage.setItem("location_full_name", location_full_name);
+                                //setLocation();
+                                
                                 
                                 $(function() { 
                                     demo.add(function() {
@@ -157,7 +159,8 @@
 
                     <div data-role="controlgroup" data-type="vartical">
                         <a href="" data-role="button" onclick="capturePhoto();"
-                           class="take_photo">Take Photo</a> <a href="" data-role="button"
+                           class="take_photo">Take Photo</a> 
+                        <a href="" data-role="button"
                            onclick="getPhoto(pictureSource.PHOTOLIBRARY);">Select from
                             gallery</a>
 
@@ -217,39 +220,39 @@
                         <label for="radio-choice-2">Schade aan priv� objecten</label>
 
                         <input type="radio" name="radio-choice-1" id="radio-choice-3" value="Beschadiging aan gemeentelijke
-                                objecten"  />
+                               objecten"  />
                         <label for="radio-choice-3">Beschadiging aan gemeentelijke objecten</label>
 
                         <input type="radio" name="radio-choice-1" id="radio-choice-4" value="Zwerfvuil"  />
                         <label for="radio-choice-4">Zwerfvuil</label>
-                        
+
                         <input type="radio" name="radio-choice-1" id="radio-choice-5" value="Zinloos geweld"  />
                         <label for="radio-choice-5">Zinloos geweld</label>
-                        
+
                         <input type="radio" name="radio-choice-1" id="radio-choice-6" value="Openbare vechtpartij"  />
                         <label for="radio-choice-6">Openbare vechtpartij</label>
-                        
+
                         <input type="radio" name="radio-choice-1" id="radio-choice-7" value="Auto ongeluk"  />
                         <label for="radio-choice-7">Auto ongeluk</label>
-                        
+
                         <input type="radio" name="radio-choice-1" id="radio-choice-8" value="Fiets ongeluk"  />
                         <label for="radio-choice-8">Fiets ongeluk</label>
-                        
+
                         <input type="radio" name="radio-choice-1" id="radio-choice-9" value="Auto ongeluk"  />
                         <label for="radio-choice-9">Auto ongeluk</label>
-                        
+
                         <input type="radio" name="radio-choice-1" id="radio-choice-10" value="Hondenpoep"  />
                         <label for="radio-choice-10">Hondenpoep</label>
-                        
+
                         <input type="radio" name="radio-choice-1" id="radio-choice-11" value="Openbare dronkenschap"  />
                         <label for="radio-choice-11">Openbare dronkenschap</label>
-                        
+
                         <input type="radio" name="radio-choice-1" id="radio-choice-12" value="Overige geweldmisdrijf"  />
                         <label for="radio-choice-12">Overige geweldmisdrijf</label>
-                        
+
                         <input type="radio" name="radio-choice-1" id="radio-choice-13" value="Inbraak"  />
                         <label for="radio-choice-13">Inbraak</label>
-                        
+
                         <input type="radio" name="radio-choice-1" id="radio-choice-14" value="Overige misdrijven"  />
                         <label for="radio-choice-14">Overige misdrijven</label>
                     </fieldset>
@@ -264,7 +267,7 @@
                             <li><a class="clear-round " data-direction="reverse"
                                    data-role="button" data-transition="none" href="#photo">Back</a></li>
                             <li><a class="clear-round" href="#remark"
-                                   data-role="button" data-transition="none">Next</a></li>
+                                   data-role="button" data-transition="none" onclick="categoryChecke();">Next</a></li>
 
                         </ul>
                     </div>
@@ -301,7 +304,7 @@
                             <li><a class="clear-round" data-direction="reverse"
                                    data-role="button" data-transition="none" href="#category">Back</a></li>
                             <li><a class="clear-round" href="#geo-location"
-                                   data-role="button" data-transition="none">Next</a></li>
+                                   data-role="button" data-transition="none" onclick="storeAdditionalRemarkText();">Next</a></li>
 
                         </ul>
                     </div>
@@ -310,25 +313,22 @@
                 <!-- /footer -->
 
             </div>
-            <!-- /page 2 -->
+            <!-- /page 4 -->
 
             <!-- 
-        page 3 | Geo location
+        page 5 | Geo location
         .................................................................... -->
             <div data-role="page" id="geo-location" data-theme="b">
 
                 <div data-role="header" data-position="fixed" data-theme="d" data-tap-toggle="false">
                     <a href="#home" data-icon="home" data-iconpos="notext"
                        data-direction="reverse" data-transition="none" >Home</a>
-                    <h1 align="center">TWMS</h1>
-                    <!-- <a href="#submit-info" data-theme="b" data-mini="true"
-                            data-icon="forward" data-iconpos="right" data-direction="reverse"
-                            onclick="loadSubmitPage();" data-transition="none">Submit</a> -->
+                    <h1 align="center">TWMS</h1>                    
                 </div>
                 <!-- page 3 | content  -->
                 <div data-role="content" class="box">
 
-                    <a href="#popup" data-role="button" data-rel="dialog"
+                    <a href="#manual-geo-location" data-role="button" data-rel="dialog"
                        data-transition="pop">Change Location Manually</a>
                     <!--current location on the map-->
                     <p>
@@ -360,7 +360,7 @@
                             <li><a class="clear-round" data-direction="reverse"
                                    data-role="button" data-transition="none" href="#remark">Back</a></li>
                             <li><a class="clear-round" href="#submit-info"
-                                   data-role="button" data-transition="none">Next</a></li>
+                                   data-role="button" data-transition="none" onclick="loadSubmitPage();">Next</a></li>
 
                         </ul>
                     </div>
@@ -371,7 +371,28 @@
 
             </div>
             <!--  /page 3  -->
+            <!-- Start of the page: #manual-geo-location -->
+            <div data-role="page" id="manual-geo-location" data-theme="b">
 
+                <!-- page 4 | content  -->
+                <div data-role="content">
+                    <div data-role="fieldcontain">
+                        <label for="textarea">Add Location Manually:</label>
+                        <textarea name="textarea" id="manual_geo_location"
+                                  placeholder="Write the location manually..."></textarea>
+                    </div>
+                    <div data-role="controlgroup" data-type="horizontal" >
+                        <a href="#geo-location" data-role="button" data-transition="none"
+                           data-theme="b" id="geo_location_cancel" >Cancel</a>
+                        <a href="#geo-location" data-role="button" data-transition="none"
+                           data-theme="b" id="geo_location_save" onclick="manualGeoLocation();">Save</a>
+
+                    </div>
+                </div>
+                <!-- /content -->
+
+            </div>
+            <!-- /page 4 -->
             <!-- 
         page 4 | 
         .................................................................... -->
@@ -390,12 +411,7 @@
                         <label>Location:</label><br /> <label>Remark:</label><br />
                     </div>
 
-                    <!-- <a href="#thanks" name="submit_data" data-theme="b"
-                            data-direction="reverse" data-ajax="false" data-role="button"
-                            data-transition="none">Submit</a>
-                    -->
-
-                    <!--                 <button type="submit" data-theme="b" name="submit_data" value="submit-data" data-ajax="false">Submit</button>-->
+                  
                 </div>
 
                 <!-- page  | footer ------------------------------------------------------- -->
@@ -406,7 +422,7 @@
                             <li><a class="clear-round" data-direction="reverse"
                                    data-role="button" data-transition="none" href="#geo-location">Back</a></li>
                             <li><a class="clear-round" href="#thanks"
-                                   data-role="button" data-transition="none">Submit</a></li>
+                                   data-role="button" data-transition="none" onclick="emptyStorage();">Submit</a></li>
 
                         </ul>
                     </div>
