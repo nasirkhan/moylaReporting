@@ -4,7 +4,9 @@ var gender;
 var b_year;
 var email;
 var phone;
-           
+var location_full_name;     
+
+
 document.addEventListener("deviceready", onDeviceReady, false);
             
 function onDeviceReady() {
@@ -35,14 +37,10 @@ function genderChecke()
 
 function categoryChecke()
 {
-    for (var i=0; i < document.reg.gender.length; i++)
-    {
-        if (document.reg.gender[i].checked)
-        {
-            gender = document.reg.gender[i].value;
-            window.localStorage.setItem("gender", gender);
-        }
-    }
+    var category;
+    category= $('input[name=radio-choice-1]:checked').val();
+    window.localStorage.setItem("category", category);
+
 }
 
             
@@ -79,6 +77,11 @@ function storeInfo(){
 function storeAdditionalRemarkText(){
     var additional_remark_text = document.getElementById("additional_remark_text").value;
     window.localStorage.setItem("additional_remark_text", additional_remark_text);
+}
+
+function manualGeoLocation(){
+    var manual_geo_location = document.getElementById("manual_geo_location").value;
+    window.localStorage.setItem("location_full_name", manual_geo_location);
 }
 
 
@@ -123,8 +126,14 @@ function loadSubmitPage(){
     var loadRegElement = document.getElementById("submit_page");
     loadRegElement.innerHTML = "<label>Family Name: </label>" + window.localStorage.getItem("familyName") + "<br />";
     loadRegElement.innerHTML += "<label>Email: </label>" + window.localStorage.getItem("email") + "<br />";
-    loadRegElement.innerHTML += "<label>Category: </label>" + window.localStorage.getItem("familyName") + "<br />";
+    loadRegElement.innerHTML += "<label>Category: </label>" + window.localStorage.getItem("category") + "<br />";
     loadRegElement.innerHTML += "<label>Location: </label>" + window.localStorage.getItem("location_full_name") + "<br />";
     loadRegElement.innerHTML += "<label>Remark: </label>" + window.localStorage.getItem("additional_remark_text") + "<br />";
     
+}
+
+function emptyStorage(){
+    localStorage.removeItem('location_full_name');
+    localStorage.removeItem('category');
+    localStorage.removeItem('additional_remark_text');
 }
