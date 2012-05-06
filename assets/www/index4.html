@@ -179,10 +179,10 @@
                 <!-- /content -->
                 <!-- page  | footer ------------------------------------------------------- -->
                 <div data-role="footer" data-id="foo1" data-position="fixed"
-                     data-fullscreen="true" data-theme="a">
+                     data-fullscreen="true" data-theme="a" data-tap-toggle="false">
                     <div data-role="navbar">
                         <ul>
-                            <li><a class="clear-round ui-btn-active" data-direction="reverse"
+                            <li><a class="clear-round" data-direction="reverse"
                                    data-role="button" data-transition="none" href="#home">Back</a></li>
                             <li><a class="clear-round" href="#category"
                                    data-role="button" data-transition="none">Next</a></li>
@@ -195,9 +195,9 @@
 
             </div>
             <!-- /page 2 -->
-            
+
             <!-- Start of the page: #category -->
-            <div data-role="page" id="category" data-theme="b">
+            <div data-role="page" id="category" >
                 <!-- page 3 | Header   -->
                 <div data-role="header" data-theme="d">
                     <a href="#home" data-icon="home" data-iconpos="notext"
@@ -206,37 +206,62 @@
                 </div>
                 <!--END header -->
                 <!-- page 3 | content  -->
-                <div data-role="content">
+                <div data-role="content" data-theme="c">
 
-                    <div data-role="fieldcontain">
-                        <label for="category_select" class="select">Choose from
-                            options:</label> <select name="category_select" id="category_select">
-                            <option value="o00">Select the Category</option>
-                            <option value="o1">Overige meldingen</option>
-                            <option value="o2">Schade aan priv� objecten</option>
-                            <option value="o3">Beschadiging aan gemeentelijke
-                                objecten</option>
-                            <option value="o4">Zwerfvuil</option>
-                            <option value="o5">Zinloos geweld</option>
-                            <option value="o6">Openbare vechtpartij</option>
-                            <option value="o7">Auto ongeluk</option>
-                            <option value="o8">Fiets ongeluk</option>
-                            <option value="o9">Hondenpoep</option>
-                            <option value="o10">Openbare dronkenschap</option>
-                            <option value="o11">Overige geweldmisdrijf</option>
-                            <option value="o12">Inbraak</option>
-                            <option value="o13">Overige misdrijven</option>
-                        </select>
-                    </div>
+                    <fieldset data-role="controlgroup" >
+                        <legend>Choose a category:</legend>
+                        <input type="radio" name="radio-choice-1" id="radio-choice-1" value="Overige meldingen" checked="checked" />
+                        <label for="radio-choice-1">Overige meldingen</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-2" value="Schade aan priv� objecten"  />
+                        <label for="radio-choice-2">Schade aan priv� objecten</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-3" value="Beschadiging aan gemeentelijke
+                                objecten"  />
+                        <label for="radio-choice-3">Beschadiging aan gemeentelijke objecten</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-4" value="Zwerfvuil"  />
+                        <label for="radio-choice-4">Zwerfvuil</label>
+                        
+                        <input type="radio" name="radio-choice-1" id="radio-choice-5" value="Zinloos geweld"  />
+                        <label for="radio-choice-5">Zinloos geweld</label>
+                        
+                        <input type="radio" name="radio-choice-1" id="radio-choice-6" value="Openbare vechtpartij"  />
+                        <label for="radio-choice-6">Openbare vechtpartij</label>
+                        
+                        <input type="radio" name="radio-choice-1" id="radio-choice-7" value="Auto ongeluk"  />
+                        <label for="radio-choice-7">Auto ongeluk</label>
+                        
+                        <input type="radio" name="radio-choice-1" id="radio-choice-8" value="Fiets ongeluk"  />
+                        <label for="radio-choice-8">Fiets ongeluk</label>
+                        
+                        <input type="radio" name="radio-choice-1" id="radio-choice-9" value="Auto ongeluk"  />
+                        <label for="radio-choice-9">Auto ongeluk</label>
+                        
+                        <input type="radio" name="radio-choice-1" id="radio-choice-10" value="Hondenpoep"  />
+                        <label for="radio-choice-10">Hondenpoep</label>
+                        
+                        <input type="radio" name="radio-choice-1" id="radio-choice-11" value="Openbare dronkenschap"  />
+                        <label for="radio-choice-11">Openbare dronkenschap</label>
+                        
+                        <input type="radio" name="radio-choice-1" id="radio-choice-12" value="Overige geweldmisdrijf"  />
+                        <label for="radio-choice-12">Overige geweldmisdrijf</label>
+                        
+                        <input type="radio" name="radio-choice-1" id="radio-choice-13" value="Inbraak"  />
+                        <label for="radio-choice-13">Inbraak</label>
+                        
+                        <input type="radio" name="radio-choice-1" id="radio-choice-14" value="Overige misdrijven"  />
+                        <label for="radio-choice-14">Overige misdrijven</label>
+                    </fieldset>
 
                 </div>
                 <!-- /content -->
                 <!-- page  | footer ------------------------------------------------------- -->
                 <div data-role="footer" data-id="foo1" data-position="fixed"
-                     data-fullscreen="true" data-theme="a">
+                     data-fullscreen="true" data-theme="a" data-tap-toggle="false">
                     <div data-role="navbar">
                         <ul>
-                            <li><a class="clear-round ui-btn-active" data-direction="reverse"
+                            <li><a class="clear-round " data-direction="reverse"
                                    data-role="button" data-transition="none" href="#photo">Back</a></li>
                             <li><a class="clear-round" href="#remark"
                                    data-role="button" data-transition="none">Next</a></li>
@@ -249,7 +274,7 @@
 
             </div>
             <!-- /page3 -->
-            
+
             <!-- Start of the page: #remark -->
             <div data-role="page" id="remark" data-theme="b">
                 <!-- page 4 | Header   -->
@@ -270,10 +295,10 @@
                 <!-- /content -->
                 <!-- page  | footer ------------------------------------------------------- -->
                 <div data-role="footer" data-id="foo1" data-position="fixed"
-                     data-fullscreen="true" data-theme="a">
+                     data-fullscreen="true" data-theme="a" data-tap-toggle="false">
                     <div data-role="navbar">
                         <ul>
-                            <li><a class="clear-round ui-btn-active" data-direction="reverse"
+                            <li><a class="clear-round" data-direction="reverse"
                                    data-role="button" data-transition="none" href="#category">Back</a></li>
                             <li><a class="clear-round" href="#geo-location"
                                    data-role="button" data-transition="none">Next</a></li>
@@ -292,9 +317,9 @@
         .................................................................... -->
             <div data-role="page" id="geo-location" data-theme="b">
 
-                <div data-role="header" data-position="fixed" data-theme="d">
+                <div data-role="header" data-position="fixed" data-theme="d" data-tap-toggle="false">
                     <a href="#home" data-icon="home" data-iconpos="notext"
-                       data-direction="reverse" data-transition="none">Home</a>
+                       data-direction="reverse" data-transition="none" >Home</a>
                     <h1 align="center">TWMS</h1>
                     <!-- <a href="#submit-info" data-theme="b" data-mini="true"
                             data-icon="forward" data-iconpos="right" data-direction="reverse"
@@ -329,10 +354,10 @@
 
                 <!-- page  | footer ------------------------------------------------------- -->
                 <div data-role="footer" data-id="foo1" data-position="fixed"
-                     data-fullscreen="true" data-theme="a">
+                     data-fullscreen="true" data-theme="a" data-tap-toggle="false">
                     <div data-role="navbar">
                         <ul>
-                            <li><a class="clear-round ui-btn-active" data-direction="reverse"
+                            <li><a class="clear-round" data-direction="reverse"
                                    data-role="button" data-transition="none" href="#remark">Back</a></li>
                             <li><a class="clear-round" href="#submit-info"
                                    data-role="button" data-transition="none">Next</a></li>
@@ -352,7 +377,7 @@
         .................................................................... -->
             <div data-role="page" id="submit-info" data-theme="b">
 
-                <div data-role="header" data-position="fixed" data-theme="d">
+                <div data-role="header" data-position="fixed" data-theme="d" data-tap-toggle="false">
                     <a href="#home" data-icon="home" data-iconpos="notext"
                        data-direction="reverse" data-transition="none">Home</a>
                     <h1 align="center">TWMS</h1>
@@ -375,10 +400,10 @@
 
                 <!-- page  | footer ------------------------------------------------------- -->
                 <div data-role="footer" data-id="foo1" data-position="fixed"
-                     data-fullscreen="true" data-theme="a">
+                     data-fullscreen="true" data-theme="a" data-tap-toggle="false">
                     <div data-role="navbar">
                         <ul>
-                            <li><a class="clear-round ui-btn-active" data-direction="reverse"
+                            <li><a class="clear-round" data-direction="reverse"
                                    data-role="button" data-transition="none" href="#geo-location">Back</a></li>
                             <li><a class="clear-round" href="#thanks"
                                    data-role="button" data-transition="none">Submit</a></li>
@@ -396,7 +421,7 @@
             <!-- 
         page 5 | 
         .................................................................... -->
-            <div data-role="page" id="thanks" data-theme="b">
+            <div data-role="page" id="thanks" data-theme="b" data-tap-toggle="false">
 
                 <div data-role="header" data-position="fixed" data-theme="d">
                     <h1 align="center">TWMS</h1>
@@ -413,7 +438,7 @@
             <!--  /page 5  -->
             <div data-role="page" id="p-reg" data-theme="c">
                 <!-- page 1 | Header  ------------------------------------------------------ -->
-                <div data-role="header" data-theme="d">
+                <div data-role="header" data-theme="d" data-tap-toggle="false">
                     <h1 align="center">TWMS</h1>
                 </div>
                 <!--END header -->
