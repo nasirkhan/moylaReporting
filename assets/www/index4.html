@@ -25,8 +25,18 @@
 
 
         <script type="text/javascript" src="js/common.js"></script>
-
-
+            
+        <script type="text/javascript">
+            document.addEventListener("backbutton", function(e){
+                if($.mobile.activePage.is('#thanks')){
+                    e.preventDefault();
+                    navigator.app.exitApp();
+                }
+                else {
+                    navigator.app.backHistory()
+                }
+            }, false);
+        </script>
 
         <script type="text/javascript">
             
@@ -288,7 +298,7 @@
                 </div>
                 <!--END header -->
                 <!-- page 4 | content  -->
-                <div data-role="content">
+                <div data-role="content" data-tap-toggle="false">
                     <div data-role="fieldcontain">
                         <label for="textarea">Additional remark:</label>
                         <textarea name="textarea" id="additional_remark_text"
@@ -297,6 +307,7 @@
                 </div>
                 <!-- /content -->
                 <!-- page  | footer ------------------------------------------------------- -->
+                
                 <div data-role="footer" data-id="foo1" data-position="fixed"
                      data-fullscreen="true" data-theme="a" data-tap-toggle="false">
                     <div data-role="navbar">
