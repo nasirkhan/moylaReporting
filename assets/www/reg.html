@@ -17,53 +17,46 @@
 
     </head> 
     <body >
-        <div data-role="page" id="p-reg" data-theme="c"> 
-            <!-- page 1 | Header  ------------------------------------------------------ -->
-            <div data-role="header" data-theme="d"> 
-                <h1>TWMS</h1> 
-            </div> <!--END header -->
-            <!-- page 1 | content ------------------------------------------------------ -->
-            <div data-role="content">
-
-
-                <h1 align="center">Registration</h1>	
-                <form name="reg" id ="reg" action="index3.html">
-                    <fieldset>
-                        <div data-role="fieldcontain" data-mini="true">
-                            <label for="familyName">Family Name:</label>
-                            <input type="text" name="familyName" id="familyName" required />
-                            <label for="initials">Initials:</label>
-                            <input type="text" name="initials" id="initials"  />                            
-                            <label for="flip-a">Gender:</label>                                
-                            <fieldset data-role="controlgroup" data-mini="true">                                
-                                <input type="radio" name="gender" id="radio-mini-1" value="male" />                                    
-                                <label for="radio-mini-1">Male</label>
-
-                                <input type="radio" name="gender" id="radio-mini-2" value="female"  />                                    
-                                <label for="radio-mini-2">Female</label>
-
-                                <input type="radio" name="gender" id="radio-mini-3" value="other"  />                                    
-                                <label for="radio-mini-3">Other</label>
-                            </fieldset>
-                            <label for="b_year">Year of Birth:</label>
-                            <input type="text" name="b_year" id="b_year" value="" placeholder="Enter the Year Only" />
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" id="email" value="" placeholder="Enter Email Address" required />
-                            <label for="phone">Phone:</label>
-                            <input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" />
-                        </div>
-                        <a href="index3.html" data-role="button" onClick="storeInfo()" >Submit</a>
-                        <a data-role="button" onClick="showInfo()" >show</a>
-                        <a href="index3.html" data-role="button" >Next</a>
-                    </fieldset>
-
-
-                </form>
-<div id="result"></div>
-            </div><!-- /content -->
-
-
-        </div><!-- /page -->
+        <div data-role="page" id="p-reg" data-theme="c">
+                <!-- page | Header  ------------------------------------------------------ -->
+                <div data-role="header" data-theme="d" data-tap-toggle="false">
+                    <h1 align="center">TWMS</h1>
+                </div>
+                <!--END header -->
+                <!-- page reg-p | content ------------------------------------------------------ -->
+                <div data-role="content">
+                    <h1 align="center">Registration</h1>
+                    <form name="reg" id="reg" action="index5.html">
+                        <fieldset>
+                            <div data-role="fieldcontain" data-mini="true">
+                                <div id="reg_form_input">
+                                    <label for="familyName">Family Name:</label> 
+                                    <span class="input_field">[</span> <input type="text" name="familyName" id="familyName" required /> <span class="input_field">]</span>
+                                    <label for="initials">Initials:</label> 
+                                    <span class="input_field">[</span> <input type="text" name="initials" id="initials" /> <span class="input_field">]</span> 
+                                    <label for="gender-select">Gender:</label>
+                                    <fieldset name="gender-select" data-role="controlgroup" data-mini="true">
+                                        <input type="radio" name="gender" id="radio-mini-1" value="male" /> 
+                                        <label for="radio-mini-1">Male</label> 
+                                        <input type="radio" name="gender" id="radio-mini-2" value="female" />
+                                        <label for="radio-mini-2">Female</label> 
+                                        <input type="radio" name="gender" id="radio-mini-3" value="other" /> 
+                                        <label for="radio-mini-3">Other</label>
+                                    </fieldset>
+                                    <label for="b_year">Year of Birth:</label> 
+                                    <span class="input_field">[</span><input type="text" name="b_year" id="b_year" placeholder="Enter the Year Only" /><span class="input_field">]</span> 
+                                    <label for="email">Email:</label>
+                                    <span class="input_field">[</span><input type="email" name="email" id="email" placeholder="Enter Email Address" required /><span class="input_field">]</span> 
+                                    <label for="phone">Phone:</label> 
+                                    <span class="input_field">[</span><input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" /><span class="input_field">]</span>
+                                </div>
+                            </div>
+                            <a href="index3.html" data-role="button" onClick="storeInfo()"
+                               data-transition="none">Submit</a>
+                        </fieldset>
+                    </form>                    
+                </div> <!-- /content -->
+            </div> <!-- /p-reg page div -->
 
     </body>
 </html>
