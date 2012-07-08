@@ -28,7 +28,7 @@
 
         <script type="text/javascript">
             document.addEventListener("backbutton", function(e){
-                if($.mobile.activePage.is('#thanks')){
+                if($.mobile.activePage.is('#thanks')||$.mobile.activePage.is('#home')){
                     e.preventDefault();
                     navigator.app.exitApp();
                 }
