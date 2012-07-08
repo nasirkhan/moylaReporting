@@ -13,7 +13,7 @@
         <script type="text/javascript" src="js/phonegap-1.4.1.js"></script>
         <script type="text/javascript" src="js/common.js"></script>
 
-        
+
 
     </head> 
     <body >
@@ -30,11 +30,11 @@
                         <fieldset>
                             <div data-role="fieldcontain" data-mini="true">
                                 <div id="reg_form_input">
-                                    <label for="familyName">Family Name:</label> 
-                                    <span class="input_field">[</span> <input type="text" name="familyName" id="familyName" required /> <span class="input_field">]</span>
-                                    <label for="initials">Initials:</label> 
-                                    <span class="input_field">[</span> <input type="text" name="initials" id="initials" /> <span class="input_field">]</span> 
-                                    <label for="gender-select">Gender:</label>
+                                    <label for="familyName" class="label_text">Family Name:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="familyName" id="familyName" required /></div> <div class="input_field">]</div>
+                                    <label for="initials" class="label_text">Initials:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="initials" id="initials" /></div><div class="input_field">]</div> 
+                                    <label for="gender-select" class="label_text">Gender:</label>
                                     <fieldset name="gender-select" data-role="controlgroup" data-mini="true">
                                         <input type="radio" name="gender" id="radio-mini-1" value="male" /> 
                                         <label for="radio-mini-1">Male</label> 
@@ -43,16 +43,16 @@
                                         <input type="radio" name="gender" id="radio-mini-3" value="other" /> 
                                         <label for="radio-mini-3">Other</label>
                                     </fieldset>
-                                    <label for="b_year">Year of Birth:</label> 
-                                    <span class="input_field">[</span><input type="text" name="b_year" id="b_year" placeholder="Enter the Year Only" /><span class="input_field">]</span> 
-                                    <label for="email">Email:</label>
-                                    <span class="input_field">[</span><input type="email" name="email" id="email" placeholder="Enter Email Address" required /><span class="input_field">]</span> 
-                                    <label for="phone">Phone:</label> 
-                                    <span class="input_field">[</span><input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" /><span class="input_field">]</span>
+                                    <label for="b_year" class="label_text">Year of Birth:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="b_year" id="b_year" placeholder="Enter the Year Only" /></div><div class="input_field">]</div>
+                                    <label for="email" class="label_text">Email:</label>
+                                    <div class="input_field">[</div> <div class="float_left"><input type="email" name="email" id="email" placeholder="Enter Email Address" required /></div><div class="input_field">]</div>
+                                    <label for="phone" class="label_text">Phone:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" /></div><div class="input_field">]</div>
                                 </div>
                             </div>
-                            <a href="index3.html" data-role="button" onClick="storeInfo()"
-                               data-transition="none">Submit</a>
+                            <div class="float_left"><a href="index5.html" data-role="button" onClick="storeInfo()"
+                               data-transition="none">Submit</a></div>
                         </fieldset>
                     </form>                    
                 </div> <!-- /content -->
