@@ -71,3 +71,60 @@ a.take_photo{
 .submit_page_label label{
     font-weight: bold;
 }
+
+/*
+*
+*   new ui new css class 
+*
+*/
+.input_field{
+    font-size: 28px;
+    float: left;
+    padding: .1em 0em;
+}
+.float_left{
+    float: left;
+}
+.label_text{
+    float: left;
+    width: 100%;
+}
+
+.footer_buttons{
+    font-size: 15px;
+}
+
+a.footer_buttons span.ui-btn-text{
+    font-size: 17px;
+}
+/*
+*
+*   new ui css override
+*
+*/
+/* input box */
+.ui-shadow-inset{
+    box-shadow: none;
+}
+.ui-body-c, .ui-dialog.ui-overlay-c{
+    border: none;
+}
+.ui-corner-all{
+    border-radius: 0px;
+}
+input.ui-body-c, input.ui-dialog.ui-overlay-c{
+    background: none;
+}
+
+/* button */
+.ui-corner-top, .ui-corner-bottom, .ui-btn-corner-all{
+    border-radius: 0px;
+}
+.ui-field-contain:first-child{
+    border: none;
+}
+.ui-navbar-noicons li .ui-btn .ui-btn-inner, .ui-navbar-noicons .ui-navbar-toggle .ui-btn-inner{
+    padding-top: .8em;
+    padding-bottom: .9em;
+}
+

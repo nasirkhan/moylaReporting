@@ -13,57 +13,50 @@
         <script type="text/javascript" src="js/phonegap-1.4.1.js"></script>
         <script type="text/javascript" src="js/common.js"></script>
 
-        
+
 
     </head> 
     <body >
-        <div data-role="page" id="p-reg" data-theme="c"> 
-            <!-- page 1 | Header  ------------------------------------------------------ -->
-            <div data-role="header" data-theme="d"> 
-                <h1>TWMS</h1> 
-            </div> <!--END header -->
-            <!-- page 1 | content ------------------------------------------------------ -->
-            <div data-role="content">
-
-
-                <h1 align="center">Registration</h1>	
-                <form name="reg" id ="reg" action="index3.html">
-                    <fieldset>
-                        <div data-role="fieldcontain" data-mini="true">
-                            <label for="familyName">Family Name:</label>
-                            <input type="text" name="familyName" id="familyName" required />
-                            <label for="initials">Initials:</label>
-                            <input type="text" name="initials" id="initials"  />                            
-                            <label for="flip-a">Gender:</label>                                
-                            <fieldset data-role="controlgroup" data-mini="true">                                
-                                <input type="radio" name="gender" id="radio-mini-1" value="male" />                                    
-                                <label for="radio-mini-1">Male</label>
-
-                                <input type="radio" name="gender" id="radio-mini-2" value="female"  />                                    
-                                <label for="radio-mini-2">Female</label>
-
-                                <input type="radio" name="gender" id="radio-mini-3" value="other"  />                                    
-                                <label for="radio-mini-3">Other</label>
-                            </fieldset>
-                            <label for="b_year">Year of Birth:</label>
-                            <input type="text" name="b_year" id="b_year" value="" placeholder="Enter the Year Only" />
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" id="email" value="" placeholder="Enter Email Address" required />
-                            <label for="phone">Phone:</label>
-                            <input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" />
-                        </div>
-                        <a href="index3.html" data-role="button" onClick="storeInfo()" >Submit</a>
-                        <a data-role="button" onClick="showInfo()" >show</a>
-                        <a href="index3.html" data-role="button" >Next</a>
-                    </fieldset>
-
-
-                </form>
-<div id="result"></div>
-            </div><!-- /content -->
-
-
-        </div><!-- /page -->
+        <div data-role="page" id="p-reg" data-theme="c">
+                <!-- page | Header  ------------------------------------------------------ -->
+                <div data-role="header" data-theme="d" data-tap-toggle="false">
+                    <h1 align="center">TWMS</h1>
+                </div>
+                <!--END header -->
+                <!-- page reg-p | content ------------------------------------------------------ -->
+                <div data-role="content">
+                    <h1 align="center">Registration</h1>
+                    <form name="reg" id="reg" action="index5.html">
+                        <fieldset>
+                            <div data-role="fieldcontain" data-mini="true">
+                                <div id="reg_form_input">
+                                    <label for="familyName" class="label_text">Family Name:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="familyName" id="familyName" required /></div> <div class="input_field">]</div>
+                                    <label for="initials" class="label_text">Initials:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="initials" id="initials" /></div><div class="input_field">]</div> 
+                                    <label for="gender-select" class="label_text">Gender:</label>
+                                    <fieldset name="gender-select" data-role="controlgroup" data-mini="true">
+                                        <input type="radio" name="gender" id="radio-mini-1" value="male" /> 
+                                        <label for="radio-mini-1">Male</label> 
+                                        <input type="radio" name="gender" id="radio-mini-2" value="female" />
+                                        <label for="radio-mini-2">Female</label> 
+                                        <input type="radio" name="gender" id="radio-mini-3" value="other" /> 
+                                        <label for="radio-mini-3">Other</label>
+                                    </fieldset>
+                                    <label for="b_year" class="label_text">Year of Birth:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="b_year" id="b_year" placeholder="Enter the Year Only" /></div><div class="input_field">]</div>
+                                    <label for="email" class="label_text">Email:</label>
+                                    <div class="input_field">[</div> <div class="float_left"><input type="email" name="email" id="email" placeholder="Enter Email Address" required /></div><div class="input_field">]</div>
+                                    <label for="phone" class="label_text">Phone:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" /></div><div class="input_field">]</div>
+                                </div>
+                            </div>
+                            <div class="float_left"><a href="index5.html" data-role="button" onClick="storeInfo()"
+                               data-transition="none">Submit</a></div>
+                        </fieldset>
+                    </form>                    
+                </div> <!-- /content -->
+            </div> <!-- /p-reg page div -->
 
     </body>
 </html>
