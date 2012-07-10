@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to TWMS</title>
+
+        <meta name="viewport" content="user-scalable=no,width=device-width" />
+
+        <link rel="stylesheet" href="css/jquery.mobile-1.1.0.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.1.0.min.js"></script>
+        <script type="text/javascript" src="js/phonegap-1.4.1.js"></script>
+
+        <script type="text/javascript" src="js/camera-all.js"></script>
+        <script type="text/javascript" src="js/uploadpic.js"></script>
+
+        <script type="text/javascript"
+        src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="js/underscore.min.js"></script>
+        <script type="text/javascript" src="js/backbone.min.js"></script>
+        <script type="text/javascript" src="js/prettify.min.js"></script>
+        <script type="text/javascript" src="js/demo.js"></script>
+        <script type="text/javascript" src="js/jquery.ui.map.js"></script>
+
+
+        <script type="text/javascript" src="js/common.js"></script>
+
+        <script type="text/javascript">
+            document.addEventListener("backbutton", function(e){
+                if($.mobile.activePage.is('#thanks')||$.mobile.activePage.is('#home')){
+                    e.preventDefault();
+                    navigator.app.exitApp();
+                }
+                else {
+                    navigator.app.backHistory()
+                }
+            }, false);
+        </script>
+
+        <script type="text/javascript">
+            
+            document.addEventListener("deviceready",onDeviceReady,false);
+            
+            // PhoneGap is ready to be used!
+            //
+            function onDeviceReady() {
+                //Camera and Gallery
+                pictureSource=navigator.camera.PictureSourceType;
+                destinationType=navigator.camera.DestinationType;
+                
+                $('#h_link').addClass('ui-disabled');
+                
+                
+                
+            }
+            
+        </script>
+        <script type="text/javascript"> 
+            
+            navigator.geolocation.getCurrentPosition(function(position) {
+                //                alert(position.coords.latitude + ", " + position.coords.longitude);
+                document.getElementById('location-cord').innerHTML = "Lat: <span class=\"cord-value\">" + position.coords.latitude + "</span>, Long: <span class=\"cord-value\">" + position.coords.longitude + "</span>";
+                showAddress(position.coords.latitude,position.coords.longitude);
+            });
+	
+            function showAddress(latitude,longitude){
+                var mapcoordain = latitude+','+longitude;
+                var geocoder = new google.maps.Geocoder();
+                var point = new google.maps.LatLng(latitude,longitude);//23.7442812,90.3728129
+
+                if (geocoder) {
+                    geocoder.geocode({ 'latLng': point }, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                //                                alert(results[0].formatted_address);
+                                document.getElementById('location-name').innerHTML = "<span class=\"cord-value\">" + results[0].formatted_address + "</span>";
+                                
+                                location_full_name = results[0].formatted_address;
+                                window.localStorage.setItem("location_full_name", location_full_name);
+                                //setLocation();
+                                
+                                
+                                $(function() { 
+                                    demo.add(function() {
+                                        $('#map_canvas').gmap({
+                                            'center': mapcoordain, 
+                                            'zoom': 17, 
+                                            'disableDefaultUI':true, 
+                                            'callback': function() {
+                                                var self = this;
+                                                self.addMarker({
+                                                    'position': this.get('map').getCenter()
+                                                }).click(function() {
+                                                    self.openInfoWindow({
+                                                        'content': 'Your Current Location'
+                                                    }, this);
+                                                });	
+                                            }
+                                        });
+                                    }).load();
+                                });
+                            } 
+                            else {
+                                console.log('No results found');
+                            }
+                        } 
+                        else {
+                            console.log('Geocoder failed due to: ' + status);
+                        }
+                    });
+                }
+            }   
+        </script>
+    </head>
+    <body>
+        <div id="wrap">
+            <!-- Start of the page: #home -->
+            <div data-role="page" id="home" data-theme="b" class="page-containar">
+                <!-- page 1 | Header   -->
+                <div data-role="header" data-theme="d">
+                    <h1 align="center">TWMS</h1>
+                </div>
+                <!-- /header page 1 -->
+                <!-- page 1 | content  -->
+                <div data-role="content">
+
+                    <h1 align="center">Welcome to TWMS</h1>
+                    <p>
+                        <a href="#photo" data-role="button" data-transition="none"
+                           class="main_page_button take_photo" onclick="capturePhoto();">Take
+                            Photo</a>
+                    </p>
+                    <div id="h_link" class="">
+                        <p>
+                            <a href="#photo" data-role="button" data-transition="none"
+                               class="main_page_button" data-theme="b" id="h_link">Send
+                                Incident</a>
+                        </p>
+                        <p>
+                            <a href="#geo-location" data-role="button" data-transition="none"
+                               class="main_page_button " data-theme="e" id="h_link">View
+                                Location</a>
+                        </p>
+                    </div>
+                    <p>
+                        <a href="#p-reg" data-role="button" data-transition="none"
+                           class="main_page_button" data-theme="a">Your Information</a>
+                    </p>
+
+                </div>
+                <!-- /content page 1 -->
+
+
+            </div>
+            <!-- /page 1  home -->
+
+            <!-- Start of the page: #photo page-2  -->
+            <div data-role="page" id="photo" data-theme="b">
+                <!-- page 2 | Header   -->
+                <div data-role="header" data-theme="d">
+                    <a href="#home" data-icon="home" data-iconpos="notext"
+                       data-direction="reverse" data-transition="none">Home</a>
+                    <h1 align="center">TWMS</h1>                    
+                </div>
+                <!-- /header page-2 -->
+                <!-- page 2 | content  -->
+                <div data-role="content">
+
+                    <div data-role="controlgroup" data-type="vartical">
+                        <a href="" data-role="button" onclick="capturePhoto();"
+                           class="take_photo">Take Photo</a> 
+                        <a href="" data-role="button"
+                           onclick="getPhoto(pictureSource.PHOTOLIBRARY);">Select from
+                            gallery</a>
+
+                    </div>
+                    <!-- display images -->
+                    <div>
+                        <img class="image-thumb" id="smallImage" src="" />
+                    </div>
+                    <div id="image-display">
+                        <div id="camera-iamge" class="image-div">
+                            <img
+                                style="display: none; width: 60px; height: 60px; float: left; padding-right: 5px;"
+                                id="smallImage" src="" />
+                        </div>
+                        <div id="gallery-image" class="image-div"></div>
+                    </div>
+                    <!-- /display images -->
+
+                </div>
+                <!-- /content page-2 -->
+                <!-- page 2 #photo | footer ------------------------------------------------------- -->
+                <div data-role="footer" data-id="foo1" data-position="fixed"
+                     data-fullscreen="true" data-theme="a" data-tap-toggle="false">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a class="clear-round footer_buttons" data-direction="reverse"
+                                   data-role="button" data-transition="none" href="#home">Back</a></li>
+                            <li><a class="clear-round footer_buttons" href="#category"
+                                   data-role="button" data-transition="none">Next</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- /navbar -->
+                </div>
+                <!-- /footer -->
+
+            </div>
+            <!-- /page 2 #photo -->
+
+            <!-- Start of the page: #category -->
+            <div data-role="page" id="category" >
+                <!-- page 3 | Header   -->
+                <div data-role="header" data-theme="d">
+                    <a href="#home" data-icon="home" data-iconpos="notext"
+                       data-direction="reverse" data-transition="none">Home</a>
+                    <h1 align="center">TWMS</h1>
+                </div>
+                <!--END header -->
+                <!-- page 3 | content  -->
+                <div data-role="content" data-theme="c">
+
+                    <fieldset data-role="controlgroup" >
+                        <legend>Choose a category:</legend>
+                        <input type="radio" name="radio-choice-1" id="radio-choice-1" value="Overige meldingen" checked="checked" />
+                        <label for="radio-choice-1">Overige meldingen</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-2" value="Schade aan priv� objecten"  />
+                        <label for="radio-choice-2">Schade aan priv� objecten</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-3" value="Beschadiging aan gemeentelijke
+                               objecten"  />
+                        <label for="radio-choice-3">Beschadiging aan gemeentelijke objecten</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-4" value="Zwerfvuil"  />
+                        <label for="radio-choice-4">Zwerfvuil</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-5" value="Zinloos geweld"  />
+                        <label for="radio-choice-5">Zinloos geweld</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-6" value="Openbare vechtpartij"  />
+                        <label for="radio-choice-6">Openbare vechtpartij</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-7" value="Auto ongeluk"  />
+                        <label for="radio-choice-7">Auto ongeluk</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-8" value="Fiets ongeluk"  />
+                        <label for="radio-choice-8">Fiets ongeluk</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-9" value="Auto ongeluk"  />
+                        <label for="radio-choice-9">Auto ongeluk</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-10" value="Hondenpoep"  />
+                        <label for="radio-choice-10">Hondenpoep</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-11" value="Openbare dronkenschap"  />
+                        <label for="radio-choice-11">Openbare dronkenschap</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-12" value="Overige geweldmisdrijf"  />
+                        <label for="radio-choice-12">Overige geweldmisdrijf</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-13" value="Inbraak"  />
+                        <label for="radio-choice-13">Inbraak</label>
+
+                        <input type="radio" name="radio-choice-1" id="radio-choice-14" value="Overige misdrijven"  />
+                        <label for="radio-choice-14">Overige misdrijven</label>
+                    </fieldset>
+
+                </div>
+                <!-- /content -->
+                <!-- page  | footer ------------------------------------------------------- -->
+                <div data-role="footer" data-id="foo1" data-position="fixed"
+                     data-fullscreen="true" data-theme="a" data-tap-toggle="false">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a class="clear-round footer_buttons" data-direction="reverse"
+                                   data-role="button" data-transition="none" href="#photo">Back</a></li>
+                            <li><a class="clear-round footer_buttons" href="#remark"
+                                   data-role="button" data-transition="none" onclick="categoryChecke();">Next</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- /navbar -->
+                </div>
+                <!-- /footer -->
+
+            </div>
+            <!-- /page3 -->
+
+            <!-- Start of the page: #remark -->
+            <div data-role="page" id="remark" data-theme="b">
+                <!-- page 4 | Header   -->
+                <div data-role="header" data-theme="d">
+                    <a href="#home" data-icon="home" data-iconpos="notext"
+                       data-direction="reverse" data-transition="none">Home</a>
+                    <h1 align="center">TWMS</h1>
+                </div>
+                <!--END header -->
+                <!-- page 4 | content  -->
+                <div data-role="content" data-tap-toggle="false">
+                    <div data-role="fieldcontain">
+                        <label for="textarea">Additional remark:</label>
+                        <textarea name="textarea" id="additional_remark_text"
+                                  placeholder="Write a description..."></textarea>
+                    </div>
+                </div>
+                <!-- /content -->
+                <!-- page  | footer ------------------------------------------------------- -->
+
+                <div data-role="footer" data-id="foo1" data-position="fixed"
+                     data-fullscreen="true" data-theme="a" data-tap-toggle="false">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a class="clear-round footer_buttons" data-direction="reverse"
+                                   data-role="button" data-transition="none" href="#category">Back</a></li>
+                            <li><a class="clear-round footer_buttons" href="#geo-location"
+                                   data-role="button" data-transition="none" onclick="storeAdditionalRemarkText();">Next</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- /navbar -->
+                </div>
+                <!-- /footer -->
+
+            </div>
+            <!-- /page 4 -->
+
+            <!-- 
+        page 5 | Geo location
+        .................................................................... -->
+            <div data-role="page" id="geo-location" data-theme="b">
+
+                <div data-role="header" data-position="fixed" data-theme="d" data-tap-toggle="false">
+                    <a href="#home" data-icon="home" data-iconpos="notext"
+                       data-direction="reverse" data-transition="none" >Home</a>
+                    <h1 align="center">TWMS</h1>                    
+                </div>
+                <!-- page 3 | content  -->
+                <div data-role="content" class="box">
+
+                    <a href="#manual-geo-location" data-role="button" data-rel="dialog"
+                       data-transition="pop">Change Location Manually</a>
+                    <!--current location on the map-->
+                    <p>
+                    <div id="geo-locaion">
+                        <div class="mapGeo">
+                            <div>
+                                <div id="map_canvas" class="map"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </p>
+                    <!--location information. coordinate and location name-->
+                    <p>
+                    <div id="location-name" class="cord-info"></div>
+                    </p>
+                    <p>
+                    <div id="location-cord" class="cord-info"></div>
+                    </p>
+
+                </div>
+                <!-- /content3 -->
+
+                <!-- page  | footer ------------------------------------------------------- -->
+                <div data-role="footer" data-id="foo1" data-position="fixed"
+                     data-fullscreen="true" data-theme="a" data-tap-toggle="false">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a class="clear-round footer_buttons" data-direction="reverse"
+                                   data-role="button" data-transition="none" href="#remark">Back</a></li>
+                            <li><a class="clear-round footer_buttons" href="#submit-info"
+                                   data-role="button" data-transition="none" onclick="loadSubmitPage();">Next</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- /navbar -->
+                </div>
+                <!-- /footer -->
+
+
+            </div>
+            <!--  /page 3  -->
+            <!-- Start of the page: #manual-geo-location -->
+            <div data-role="page" id="manual-geo-location" data-theme="b">
+
+                <!-- page 4 | content  -->
+                <div data-role="content">
+                    <div data-role="fieldcontain">
+                        <label for="textarea">Add Location Manually:</label>
+                        <textarea name="textarea" id="manual_geo_location"
+                                  placeholder="Write the location manually..."></textarea>
+                    </div>
+                    <div data-role="controlgroup" data-type="horizontal" >
+                        <a href="#geo-location" data-role="button" data-transition="none"
+                           data-theme="b" id="geo_location_cancel" >Cancel</a>
+                        <a href="#geo-location" data-role="button" data-transition="none"
+                           data-theme="b" id="geo_location_save" onclick="manualGeoLocation();">Save</a>
+
+                    </div>
+                </div>
+                <!-- /content -->
+
+            </div>
+            <!-- /page 4 -->
+            <!-- 
+        page 4 | 
+        .................................................................... -->
+            <div data-role="page" id="submit-info" data-theme="b">
+
+                <div data-role="header" data-position="fixed" data-theme="d" data-tap-toggle="false">
+                    <a href="#home" data-icon="home" data-iconpos="notext"
+                       data-direction="reverse" data-transition="none">Home</a>
+                    <h1 align="center">TWMS</h1>
+                </div>
+                <!-- page 4 | content ------------------------------------------ -->
+                <div data-role="content">
+                    <h3 align="center">Sending Information</h3>
+                    <div id="submit_page" class="submit_page_label">
+                        <label>Family Name:</label><br /> <label>Email:</label><br /> <label>Category:</label><br />
+                        <label>Location:</label><br /> <label>Remark:</label><br />
+                    </div>
+
+
+                </div>
+
+                <!-- page  | footer ------------------------------------------------------- -->
+                <div data-role="footer" data-id="foo1" data-position="fixed"
+                     data-fullscreen="true" data-theme="a" data-tap-toggle="false">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a class="clear-round footer_buttons" data-direction="reverse"
+                                   data-role="button" data-transition="none" href="#geo-location">Back</a></li>
+                            <li><a class="clear-round footer_buttons" href="#thanks"
+                                   data-role="button" data-transition="none" onclick="emptyStorage();">Submit</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- /navbar -->
+                </div>
+                <!-- /footer -->
+
+
+            </div>
+            <!--  /page 4  -->
+
+            <!-- 
+        page 5 | 
+        .................................................................... -->
+            <div data-role="page" id="thanks" data-theme="b" data-tap-toggle="false">
+
+                <div data-role="header" data-position="fixed" data-theme="d">
+                    <h1 align="center">TWMS</h1>
+                </div>
+                <!-- page 5 | content ------------------------------------------ -->
+                <div data-role="content">
+                    <p>
+                    <h3 align="center">Thank you for submitting the information.</h3>
+                    </p>
+                </div>
+                <!-- /content -->
+
+            </div>
+            <!--  /page 5  -->
+            <div data-role="page" id="p-reg" data-theme="c">
+                <!-- page | Header  ------------------------------------------------------ -->
+                <div data-role="header" data-theme="d" data-tap-toggle="false">
+                    <h1 align="center">TWMS</h1>
+                </div>
+                <!--END header -->
+                <!-- page reg-p | content ------------------------------------------------------ -->
+                <div data-role="content">
+                    <h1 align="center">Registration</h1>
+                    <form name="reg" id="reg" action="index5.html">
+                        <fieldset>
+                            <div data-role="fieldcontain" data-mini="true">
+                                <div id="reg_form_input">
+                                    <label for="familyName" class="label_text">Family Name:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="familyName" id="familyName" required /></div> <div class="input_field">]</div>
+                                    <label for="initials" class="label_text">Initials:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="initials" id="initials" /></div><div class="input_field">]</div> 
+                                    <label for="gender-select" class="label_text">Gender:</label>
+                                    <fieldset name="gender-select" data-role="controlgroup" data-mini="true">
+                                        <input type="radio" name="gender" id="radio-mini-1" value="male" /> 
+                                        <label for="radio-mini-1">Male</label> 
+                                        <input type="radio" name="gender" id="radio-mini-2" value="female" />
+                                        <label for="radio-mini-2">Female</label> 
+                                        <input type="radio" name="gender" id="radio-mini-3" value="other" /> 
+                                        <label for="radio-mini-3">Other</label>
+                                    </fieldset>
+                                    <label for="b_year" class="label_text">Year of Birth:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="b_year" id="b_year" placeholder="Enter the Year Only" /></div><div class="input_field">]</div>
+                                    <label for="email" class="label_text">Email:</label>
+                                    <div class="input_field">[</div> <div class="float_left"><input type="email" name="email" id="email" placeholder="Enter Email Address" required /></div><div class="input_field">]</div>
+                                    <label for="phone" class="label_text">Phone:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" /></div><div class="input_field">]</div>
+                                </div>
+                            </div>
+                            <div class="float_left"><a href="index5.html" data-role="button" onClick="storeInfo()"
+                               data-transition="none">Submit</a></div>
+                        </fieldset>
+                    </form>                    
+                </div> <!-- /content -->
+            </div> <!-- /p-reg page div -->
+            <!-- /page -->
+        </div>
+    </body>
+</html>
