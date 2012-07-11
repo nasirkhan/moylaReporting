@@ -91,6 +91,17 @@ a.footer_buttons span.ui-btn-text{
     font-size: 17px;
 }
 
+.view_location{
+    background: #FBE581;
+}
+
+.send_incident{
+    background: #3C6FA1;
+}
+
+.your_information{
+    background: #464646;
+}
 /*
 *
 *   new ui css override
