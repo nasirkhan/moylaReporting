@@ -59,14 +59,7 @@ a.main_page_button span{
     font-size: 24px;
 }
 a.take_photo{
-/*    background: #33cc00;*/
-    background: #29cc10; /* Old browsers */
-    background: -moz-linear-gradient(top,  #29cc10 0%, #299a0b 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#29cc10), color-stop(100%,#299a0b)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #29cc10 0%,#299a0b 100%); /* Chrome10+,Safari5.1+ */
-    background: linear-gradient(top,  #29cc10 0%,#299a0b 100%); /* W3C */
-
-
+    background: #36A723;
 }
 .submit_page_label label{
     font-weight: bold;
@@ -80,7 +73,7 @@ a.take_photo{
 .input_field{
     font-size: 28px;
     float: left;
-    padding: .1em 0em;
+    padding: 0.2em 0em 0.1em 0em;
 }
 .float_left{
     float: left;
@@ -96,6 +89,18 @@ a.take_photo{
 
 a.footer_buttons span.ui-btn-text{
     font-size: 17px;
+}
+
+.view_location{
+    background: #FBE581;
+}
+
+.send_incident{
+    background: #3C6FA1;
+}
+
+.your_information{
+    background: #464646;
 }
 /*
 *
@@ -113,7 +118,7 @@ a.footer_buttons span.ui-btn-text{
     border-radius: 0px;
 }
 input.ui-body-c, input.ui-dialog.ui-overlay-c{
-    background: none;
+    background: #e0e0e0;
 }
 
 /* button */
@@ -127,4 +132,25 @@ input.ui-body-c, input.ui-dialog.ui-overlay-c{
     padding-top: .8em;
     padding-bottom: .9em;
 }
-
+.ui-corner-left, .ui-corner-right{
+    border-bottom-left-radius: 0em;
+    border-top-left-radius: 0em;
+    border-bottom-right-radius: 0em;
+    border-top-right-radius: 0em;
+}
+.ui-body-c, .ui-dialog.ui-overlay-c{
+    background: #e0e0e0;
+}
+input.ui-input-text, textarea.ui-input-text{
+    border: none;
+}
+.ui-field-contain input.ui-input-text, .ui-field-contain textarea.ui-input-text, .ui-field-contain .ui-input-search{
+    border: none;
+}
+input.ui-input-text{
+    border: none;
+    box-shadow: none;
+}
+.ui-btn-up-b{
+   background: #3C6FA1; 
+}
