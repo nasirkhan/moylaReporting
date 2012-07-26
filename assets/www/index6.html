@@ -1,0 +1,171 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Waste Management System</title> 
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+        <link rel="stylesheet" href="css/jquery.mobile-1.0.1.min.css" /> 
+        <link rel="stylesheet" href="css/style.css" /> 
+
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script> 
+        <script type="text/javascript" src="js/jquery.mobile-1.0.1.min.js"></script>
+        <script type="text/javascript" src="js/phonegap-1.4.1.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        
+        <script type="text/javascript" src="js/camera-all.js"></script>
+        <script type="text/javascript" src="js/uploadpic.js"></script>
+        
+        <script type="text/javascript">
+            document.addEventListener("backbutton", function(e){
+                if($.mobile.activePage.is('#thanks')||$.mobile.activePage.is('#home')){
+                    e.preventDefault();
+                    navigator.app.exitApp();
+                }
+                else {
+                    navigator.app.backHistory()
+                }
+            }, false);
+        </script>
+    </head> 
+    <body >
+        <!-- Start of the page: #home -->
+        <div data-role="page" id="home" data-theme="b" class="page-containar">
+            <!-- page 1 | Header   -->
+            <div data-role="header" data-theme="d">
+                <h1 align="center">TWMS</h1>
+            </div>
+            <!-- /header page 1 -->
+            <!-- page 1 | content  -->
+            <div data-role="content">
+
+                <h1 align="center">Welcome to TWMS</h1>
+
+                <a href="#photo" data-role="button" data-transition="none"
+                   class="main_page_button take_photo" onclick="capturePhoto();">Take Photo</a>
+
+                <div id="h_link" class="">
+
+                    <a href="#photo" data-role="button" data-transition="none"
+                       class="main_page_button send_incident" data-theme="b" id="h_link">Send Incident</a>
+
+
+                    <a href="#geo-location" data-role="button" data-transition="none"
+                       class="main_page_button view_location" data-theme="e" id="h_link">View Location</a>
+
+                </div>
+
+                <a href="#p-reg" data-role="button" data-transition="none"
+                   class="main_page_button your_information" data-theme="a">Your Information</a>
+
+
+            </div>
+            <!-- /content page 1 -->
+
+
+        </div>
+        <!-- /page 1  home -->
+
+
+        <!-- Start of the page: #photo page-2  -->
+        <div data-role="page" id="photo" data-theme="b">
+            <!-- page 2 | Header   -->
+            <div data-role="header" data-theme="d">
+                <a href="#home" data-icon="home" data-iconpos="notext"
+                   data-direction="reverse" data-transition="none">Home</a>
+                <h1 align="center">TWMS</h1>                    
+            </div>
+            <!-- /header page-2 -->
+            <!-- page 2 | content  -->
+            <div data-role="content">
+
+                <div data-role="controlgroup" data-type="vartical">
+                    <a href="" data-role="button" onclick="capturePhoto();"
+                       class="take_photo">Take Photo</a> 
+                    <a href="" data-role="button"
+                       onclick="getPhoto(pictureSource.PHOTOLIBRARY);">Select from
+                        gallery</a>
+
+                </div>
+                <!-- display images -->
+                <div>
+                    <img class="image-thumb" id="smallImage" src="" />
+                </div>
+                <div id="image-display">
+                    <div id="image-count"></div>
+                    <div id="camera-iamge" class="image-div">
+                        <img
+                            style="display: none; width: 60px; height: 60px; float: left; padding-right: 5px;"
+                            id="smallImage" src="" />
+                    </div>
+                    <div id="gallery-image" class="image-div"></div>
+                </div>
+                <!-- /display images -->
+
+            </div>
+            <!-- /content page-2 -->
+            <!-- page 2 #photo | footer ------------------------------------------------------- -->
+            <div data-role="footer" data-id="foo1" data-position="fixed"
+                 data-fullscreen="true" data-theme="a" data-tap-toggle="false">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a class="clear-round footer_buttons" data-direction="reverse"
+                               data-role="button" data-transition="none" href="#home">Back</a></li>
+                        <li><a class="clear-round footer_buttons" href="#category"
+                               data-role="button" data-transition="none">Next</a></li>
+
+                    </ul>
+                </div>
+                <!-- /navbar -->
+            </div>
+            <!-- /footer -->
+
+        </div>
+        <!-- /page 2 #photo -->
+
+
+        <!--        page start #p-reg -->
+        <div data-role="page" id="p-reg" data-theme="c" align="center">
+            <!-- page | Header  ------------------------------------------------------ -->
+            <div data-role="header" data-theme="d" data-tap-toggle="false">
+                <h1 align="center">TWMS</h1>
+            </div>
+            <!--END header -->
+            <!-- page reg-p | content ------------------------------------------------- -->
+            <div data-role="content">
+                <h2>Registration</h2>
+                <form name="reg" id="reg" action="">
+                    <fieldset>
+                        <div data-role="fieldcontain" data-mini="true">
+                            <div id="reg_form_input">
+                                <label for="familyName" class="label_text">Family Name:</label> 
+                                <div class="input_field">[</div> <div class="float_left"><input type="text" name="familyName" id="familyName" required /></div> <div class="input_field">]</div>
+                                <label for="prefix" class="label_text">Prefix:</label> 
+                                <div class="input_field">[</div> <div class="float_left"><input type="text" name="prefix" id="prefix" /></div> <div class="input_field">]</div>
+                                <label for="initials" class="label_text">Initials:</label> 
+                                <div class="input_field">[</div> <div class="float_left"><input type="text" name="initials" id="initials" /></div><div class="input_field">]</div> 
+                                <label for="gender-select" class="label_text">Gender:</label>
+                                <fieldset name="gender-select" data-role="controlgroup" data-mini="true" data-type="horizontal">
+                                    <input type="radio" name="gender" id="radio-mini-1" value="male" /> 
+                                    <label for="radio-mini-1">Male</label> 
+                                    <input type="radio" name="gender" id="radio-mini-2" value="female" />
+                                    <label for="radio-mini-2">Female</label>                                         
+                                </fieldset>
+                                <label for="b_year" class="label_text">Year of Birth:</label> 
+                                <div class="input_field">[</div> <div class="float_left"><input type="text" name="b_year" id="b_year" placeholder="Enter the Year Only" /></div><div class="input_field">]</div>
+                                <label for="email" class="label_text">Email:</label>
+                                <div class="input_field">[</div> <div class="float_left"><input type="email" name="email" id="email" placeholder="Enter Email Address" required /></div><div class="input_field">]</div>
+                                <label for="phone" class="label_text">Phone:</label> 
+                                <div class="input_field">[</div> <div class="float_left"><input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" /></div><div class="input_field">]</div>
+                            </div>
+                        </div>
+                        <!--                            TODO:set the page link on the submit button -->
+                        <div class="float_left"><a href="index6.html" data-role="button" onClick="storeInfo()"
+                                                   data-transition="none" data-theme="b" data-mini="false">Submit</a></div>
+                    </fieldset>
+                </form>                    
+            </div> <!-- /content -->
+        </div> <!-- /p-reg page div -->
+
+    </body>
+</html>

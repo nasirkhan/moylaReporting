@@ -30,6 +30,9 @@
 .image-div{
     float: left;
 }
+.multi-imge{
+    float: left;
+}
 .image-div-m{
     border: 1px solid #2373a5;
 }
@@ -45,7 +48,7 @@
     height: 100%;
 }
 div#wrap{
-    overflow: hidden;
+/*    overflow: hidden;*/
 }
 .ui-btn-corner-all{
     border-radius: .3em;
@@ -63,6 +66,16 @@ a.take_photo{
 }
 .submit_page_label label{
     font-weight: bold;
+}
+.submit_page_main{
+    background: #CFCFCF;
+    border: 1px solid #2373a5;
+    padding: 5px;
+}
+.submit_page_section_heading{
+    border-bottom: 2px solid #2373a5;
+    margin-bottom: 3px;
+    padding-bottom: 3px;
 }
 
 /*
@@ -153,4 +166,19 @@ input.ui-input-text{
 }
 .ui-btn-up-b{
    background: #3C6FA1; 
+}
+#reg{
+    text-align: left;
+}
+.ui-page-header-fullscreen .ui-content, .ui-page-footer-fullscreen .ui-content{
+    padding: 15px;
+}
+.gender{
+    float: left;
+}
+.cat-odd .ui-radio .ui-btn-up-c{
+    background: #2373a5;
+}
+.cat-even .ui-radio .ui-btn-up-c{
+    background: #999;
 }

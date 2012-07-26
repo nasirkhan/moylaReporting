@@ -1,0 +1,97 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Waste Management System</title> 
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+        <link rel="stylesheet" href="css/jquery.mobile-1.0.1.min.css" /> 
+        <link rel="stylesheet" href="css/style.css" /> 
+
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script> 
+        <script type="text/javascript" src="js/jquery.mobile-1.0.1.min.js"></script>
+        <script type="text/javascript" src="js/phonegap-1.4.1.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        
+        <script type="text/javascript" src="js/camera-all.js"></script>
+        <script type="text/javascript" src="js/uploadpic.js"></script>
+
+        <script type="text/javascript">
+            
+            document.addEventListener("deviceready",onDeviceReady,false);
+            
+            // PhoneGap is ready to be used!
+            //
+            function onDeviceReady() {
+                //Camera and Gallery
+                pictureSource=navigator.camera.PictureSourceType;
+                destinationType=navigator.camera.DestinationType;
+                
+//                $('#h_link').addClass('ui-disabled');
+                
+                
+                
+            }
+        </script>
+
+    </head> 
+    <body >
+        <!-- Start of the page: #photo page-2  -->
+            <div data-role="page" id="photo" data-theme="b">
+                <!-- page 2 | Header   -->
+                <div data-role="header" data-theme="d">
+                    <a href="#home" data-icon="home" data-iconpos="notext"
+                       data-direction="reverse" data-transition="none">Home</a>
+                    <h1 align="center">TWMS</h1>                    
+                </div>
+                <!-- /header page-2 -->
+                <!-- page 2 | content  -->
+                <div data-role="content">
+
+                    <div data-role="controlgroup" data-type="vartical">
+                        <a href="" data-role="button" onclick="capturePhoto();"
+                           class="take_photo">Take Photo</a> 
+                        <a href="" data-role="button"
+                           onclick="getPhoto(pictureSource.PHOTOLIBRARY);">Select from
+                            gallery</a>
+
+                    </div>
+                    <!-- display images -->
+                    <div>
+                        <img class="image-thumb" id="smallImage" src="" />
+                    </div>
+                    <div id="image-display">
+<!--                        <div id="camera-iamge" class="image-div">
+                            <img
+                                style="display: none; width: 60px; height: 60px; float: left; padding-right: 5px;"
+                                id="smallImage" src="" />
+                        </div>-->
+                        <div id="gallery-image" class="image-div"></div>
+                    </div>
+                    <!-- /display images -->
+
+                </div>
+                <!-- /content page-2 -->
+                <!-- page 2 #photo | footer ------------------------------------------------------- -->
+                <div data-role="footer" data-id="foo1" data-position="fixed"
+                     data-fullscreen="true" data-theme="a" data-tap-toggle="false">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a class="clear-round footer_buttons" data-direction="reverse"
+                                   data-role="button" data-transition="none" href="#home">Back</a></li>
+                            <li><a class="clear-round footer_buttons" href="#category"
+                                   data-role="button" data-transition="none">Next</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- /navbar -->
+                </div>
+                <!-- /footer -->
+
+            </div>
+            <!-- /page 2 #photo -->
+
+
+
+    </body>
+</html>
