@@ -124,12 +124,17 @@ function loadRegForm(){
 
 function loadSubmitPage(){
     var loadRegElement = document.getElementById("submit_page");
-    loadRegElement.innerHTML = "<label>Family Name: </label>" + window.localStorage.getItem("familyName") + "<br />";
+    loadRegElement.innerHTML = "<div class=\"submit_page_main\">";
+    loadRegElement.innerHTML += "<div id=\"submit_page\" class=\"submit_page_label\">";
+    loadRegElement.innerHTML += "<div class=\"submit_page_section_heading\">Personal Information:</div>";
+    loadRegElement.innerHTML += "<label>Family Name: </label>" + window.localStorage.getItem("familyName") + "<br />";
     loadRegElement.innerHTML += "<label>Email: </label>" + window.localStorage.getItem("email") + "<br />";
+    loadRegElement.innerHTML += "<div class=\"submit_page_section_heading\">Reporting info:</div>";
     loadRegElement.innerHTML += "<label>Category: </label>" + window.localStorage.getItem("category") + "<br />";
     loadRegElement.innerHTML += "<label>Location: </label>" + window.localStorage.getItem("location_full_name") + "<br />";
     loadRegElement.innerHTML += "<label>Remark: </label>" + window.localStorage.getItem("additional_remark_text") + "<br />";
-    
+    loadRegElement.innerHTML += "</div>";
+    loadRegElement.innerHTML += "</div>";    
 }
 
 function emptyStorage(){
