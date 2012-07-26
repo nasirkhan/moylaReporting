@@ -15,15 +15,6 @@
         <script type="text/javascript" src="js/camera-all.js"></script>
         <script type="text/javascript" src="js/uploadpic.js"></script>
 
-        <script type="text/javascript"
-        src="http://maps.google.com/maps/api/js?sensor=false"></script>
-        <script type="text/javascript" src="js/underscore.min.js"></script>
-        <script type="text/javascript" src="js/backbone.min.js"></script>
-        <script type="text/javascript" src="js/prettify.min.js"></script>
-        <script type="text/javascript" src="js/demo.js"></script>
-        <script type="text/javascript" src="js/jquery.ui.map.js"></script>
-
-
         <script type="text/javascript" src="js/common.js"></script>
 
         <script type="text/javascript">
@@ -41,7 +32,7 @@
         <script type="text/javascript">
             
             document.addEventListener("deviceready",onDeviceReady,false);
-            
+            //
             // PhoneGap is ready to be used!
             //
             function onDeviceReady() {
@@ -56,62 +47,7 @@
             }
             
         </script>
-        <script type="text/javascript"> 
-            
-            navigator.geolocation.getCurrentPosition(function(position) {
-                //                alert(position.coords.latitude + ", " + position.coords.longitude);
-                document.getElementById('location-cord').innerHTML = "Lat: <span class=\"cord-value\">" + position.coords.latitude + "</span>, Long: <span class=\"cord-value\">" + position.coords.longitude + "</span>";
-                showAddress(position.coords.latitude,position.coords.longitude);
-            });
-	
-            function showAddress(latitude,longitude){
-                var mapcoordain = latitude+','+longitude;
-                var geocoder = new google.maps.Geocoder();
-                var point = new google.maps.LatLng(latitude,longitude);//23.7442812,90.3728129
-
-                if (geocoder) {
-                    geocoder.geocode({ 'latLng': point }, function (results, status) {
-                        if (status == google.maps.GeocoderStatus.OK) {
-                            if (results[0]) {
-                                //                                alert(results[0].formatted_address);
-                                document.getElementById('location-name').innerHTML = "<span class=\"cord-value\">" + results[0].formatted_address + "</span>";
-                                
-                                location_full_name = results[0].formatted_address;
-                                window.localStorage.setItem("location_full_name", location_full_name);
-                                //setLocation();
-                                
-                                
-                                $(function() { 
-                                    demo.add(function() {
-                                        $('#map_canvas').gmap({
-                                            'center': mapcoordain, 
-                                            'zoom': 17, 
-                                            'disableDefaultUI':true, 
-                                            'callback': function() {
-                                                var self = this;
-                                                self.addMarker({
-                                                    'position': this.get('map').getCenter()
-                                                }).click(function() {
-                                                    self.openInfoWindow({
-                                                        'content': 'Your Current Location'
-                                                    }, this);
-                                                });	
-                                            }
-                                        });
-                                    }).load();
-                                });
-                            } 
-                            else {
-                                console.log('No results found');
-                            }
-                        } 
-                        else {
-                            console.log('Geocoder failed due to: ' + status);
-                        }
-                    });
-                }
-            }   
-        </script>
+        
     </head>
     <body>
         <div id="wrap">
@@ -126,27 +62,24 @@
                 <div data-role="content">
 
                     <h1 align="center">Welcome to TWMS</h1>
-                    <p>
-                        <a href="#photo" data-role="button" data-transition="none"
-                           class="main_page_button take_photo" onclick="capturePhoto();">Take
-                            Photo</a>
-                    </p>
+
+                    <a href="#photo" data-role="button" data-transition="none"
+                       class="main_page_button take_photo" onclick="capturePhoto();">Take Photo</a>
+
                     <div id="h_link" class="">
-                        <p>
-                            <a href="#photo" data-role="button" data-transition="none"
-                               class="main_page_button" data-theme="b" id="h_link">Send
-                                Incident</a>
-                        </p>
-                        <p>
-                            <a href="#geo-location" data-role="button" data-transition="none"
-                               class="main_page_button " data-theme="e" id="h_link">View
-                                Location</a>
-                        </p>
+
+                        <a href="#photo" data-role="button" data-transition="none"
+                           class="main_page_button send_incident" data-theme="b" id="h_link">Send Incident</a>
+
+
+                        <a href="#geo-location" data-role="button" data-transition="none"
+                           class="main_page_button view_location" data-theme="e" id="h_link">View Location</a>
+
                     </div>
-                    <p>
-                        <a href="#p-reg" data-role="button" data-transition="none"
-                           class="main_page_button" data-theme="a">Your Information</a>
-                    </p>
+
+                    <a href="#p-reg" data-role="button" data-transition="none"
+                       class="main_page_button your_information" data-theme="a">Your Information</a>
+
 
                 </div>
                 <!-- /content page 1 -->
@@ -167,14 +100,14 @@
                 <!-- page 2 | content  -->
                 <div data-role="content">
 
-                    <div data-role="controlgroup" data-type="vartical">
+<!--                    <div data-role="controlgroup" data-type="vartical">-->
                         <a href="" data-role="button" onclick="capturePhoto();"
-                           class="take_photo">Take Photo</a> 
+                           class="take_photo" data-mini="false">Take Photo</a> 
                         <a href="" data-role="button"
-                           onclick="getPhoto(pictureSource.PHOTOLIBRARY);">Select from
+                           onclick="getPhoto(pictureSource.PHOTOLIBRARY);" data-mini="false">Select from
                             gallery</a>
 
-                    </div>
+<!--                    </div>-->
                     <!-- display images -->
                     <div>
                         <img class="image-thumb" id="smallImage" src="" />
@@ -221,53 +154,59 @@
                 <!--END header -->
                 <!-- page 3 | content  -->
                 <div data-role="content" data-theme="c">
-
+                    
                     <fieldset data-role="controlgroup" >
                         <legend>Choose a category:</legend>
-                        <input type="radio" name="radio-choice-1" id="radio-choice-1" value="Overige meldingen" checked="checked" />
-                        <label for="radio-choice-1">Overige meldingen</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-2" value="Schade aan priv� objecten"  />
-                        <label for="radio-choice-2">Schade aan priv� objecten</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-3" value="Beschadiging aan gemeentelijke
-                               objecten"  />
-                        <label for="radio-choice-3">Beschadiging aan gemeentelijke objecten</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-4" value="Zwerfvuil"  />
-                        <label for="radio-choice-4">Zwerfvuil</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-5" value="Zinloos geweld"  />
-                        <label for="radio-choice-5">Zinloos geweld</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-6" value="Openbare vechtpartij"  />
-                        <label for="radio-choice-6">Openbare vechtpartij</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-7" value="Auto ongeluk"  />
-                        <label for="radio-choice-7">Auto ongeluk</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-8" value="Fiets ongeluk"  />
-                        <label for="radio-choice-8">Fiets ongeluk</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-9" value="Auto ongeluk"  />
-                        <label for="radio-choice-9">Auto ongeluk</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-10" value="Hondenpoep"  />
-                        <label for="radio-choice-10">Hondenpoep</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-11" value="Openbare dronkenschap"  />
-                        <label for="radio-choice-11">Openbare dronkenschap</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-12" value="Overige geweldmisdrijf"  />
-                        <label for="radio-choice-12">Overige geweldmisdrijf</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-13" value="Inbraak"  />
-                        <label for="radio-choice-13">Inbraak</label>
-
-                        <input type="radio" name="radio-choice-1" id="radio-choice-14" value="Overige misdrijven"  />
-                        <label for="radio-choice-14">Overige misdrijven</label>
+                        <div  class="cat-odd" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-1" value="Overige meldingen" checked="checked" class="cat-odd" />
+                            <label for="radio-choice-1">Overige meldingen</label>
+                        </div>
+                        <div  class="cat-even" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-2" value="Schade aan priv� objecten"  />
+                            <label for="radio-choice-2">Schade aan priv� objecten</label>
+                        </div>
+                        <div  class="cat-odd" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-3" value="Beschadiging aan gemeentelijke objecten"  />
+                            <label for="radio-choice-3">Beschadiging aan gemeentelijke objecten</label>
+                        </div>
+                        <div  class="cat-even" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-4" value="Zwerfvuil"  />
+                            <label for="radio-choice-4">Zwerfvuil</label></div>
+                        <div  class="cat-odd" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-5" value="Zinloos geweld"  />
+                            <label for="radio-choice-5">Zinloos geweld</label></div>
+                        <div  class="cat-even" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-6" value="Openbare vechtpartij"  />
+                            <label for="radio-choice-6">Openbare vechtpartij</label></div>
+                        <div  class="cat-odd" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-7" value="Auto ongeluk"  />
+                            <label for="radio-choice-7">Auto ongeluk</label></div>
+                        <div  class="cat-even" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-8" value="Fiets ongeluk"  />
+                            <label for="radio-choice-8">Fiets ongeluk</label></div>
+                        <div  class="cat-odd" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-9" value="Auto ongeluk"  />
+                            <label for="radio-choice-9">Auto ongeluk</label></div>
+                        <div  class="cat-even" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-10" value="Hondenpoep"  />
+                            <label for="radio-choice-10">Hondenpoep</label></div>
+                        <div  class="cat-odd" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-11" value="Openbare dronkenschap"  />
+                            <label for="radio-choice-11">Openbare dronkenschap</label></div>
+                        <div  class="cat-even" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-12" value="Overige geweldmisdrijf"  />
+                            <label for="radio-choice-12">Overige geweldmisdrijf</label></div>
+                                
+                        <div  class="cat-odd" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-13" value="Inbraak"  />
+                            <label for="radio-choice-13">Inbraak</label>
+                        </div>
+                        <div  class="cat-even" >
+                            <input type="radio" name="radio-choice-1" id="radio-choice-14" value="Overige misdrijven"  />
+                            <label for="radio-choice-14">Overige misdrijven</label>
+                        </div>
                     </fieldset>
-
+                        
                 </div>
                 <!-- /content -->
                 <!-- page  | footer ------------------------------------------------------- -->
@@ -279,13 +218,13 @@
                                    data-role="button" data-transition="none" href="#photo">Back</a></li>
                             <li><a class="clear-round footer_buttons" href="#remark"
                                    data-role="button" data-transition="none" onclick="categoryChecke();">Next</a></li>
-
+                                       
                         </ul>
                     </div>
                     <!-- /navbar -->
                 </div>
                 <!-- /footer -->
-
+                    
             </div>
             <!-- /page3 -->
 
@@ -418,12 +357,18 @@
                 <!-- page 4 | content ------------------------------------------ -->
                 <div data-role="content">
                     <h3 align="center">Sending Information</h3>
-                    <div id="submit_page" class="submit_page_label">
-                        <label>Family Name:</label><br /> <label>Email:</label><br /> <label>Category:</label><br />
-                        <label>Location:</label><br /> <label>Remark:</label><br />
+                    <div class="submit_page_main">
+                        <div id="submit_page" class="submit_page_label">
+                            <div class="submit_page_section_heading">Personal Information:</div>
+                            <label>Family Name:</label><br /> <label>Email:</label><br /> 
+                            <div class="submit_page_section_heading">Reporting info:</div>
+                            <label>Location:</label><br />
+                            <label>Category:</label><br />
+                            <label>Remark:</label><br />
+                        </div>
                     </div>
-
-
+                        
+                        
                 </div>
 
                 <!-- page  | footer ------------------------------------------------------- -->
@@ -463,32 +408,32 @@
                 <!-- /content -->
 
             </div>
-            <!--  /page 5  -->
-            <div data-role="page" id="p-reg" data-theme="c">
+            <!--        page start #p-reg -->
+            <div data-role="page" id="p-reg" data-theme="c" align="center">
                 <!-- page | Header  ------------------------------------------------------ -->
                 <div data-role="header" data-theme="d" data-tap-toggle="false">
                     <h1 align="center">TWMS</h1>
                 </div>
                 <!--END header -->
-                <!-- page reg-p | content ------------------------------------------------------ -->
+                <!-- page reg-p | content ------------------------------------------------- -->
                 <div data-role="content">
-                    <h1 align="center">Registration</h1>
-                    <form name="reg" id="reg" action="index5.html">
+                    <h2>Registration</h2>
+                    <form name="reg" id="reg" action="">
                         <fieldset>
                             <div data-role="fieldcontain" data-mini="true">
                                 <div id="reg_form_input">
                                     <label for="familyName" class="label_text">Family Name:</label> 
                                     <div class="input_field">[</div> <div class="float_left"><input type="text" name="familyName" id="familyName" required /></div> <div class="input_field">]</div>
+                                    <label for="prefix" class="label_text">Prefix:</label> 
+                                    <div class="input_field">[</div> <div class="float_left"><input type="text" name="prefix" id="prefix" /></div> <div class="input_field">]</div>
                                     <label for="initials" class="label_text">Initials:</label> 
                                     <div class="input_field">[</div> <div class="float_left"><input type="text" name="initials" id="initials" /></div><div class="input_field">]</div> 
-                                    <label for="gender-select" class="label_text">Gender:</label>
-                                    <fieldset name="gender-select" data-role="controlgroup" data-mini="true">
+                                    <label for="gender-select" class="label_text gender">Gender:</label>
+                                    <fieldset name="gender-select" data-role="controlgroup" data-mini="true" data-type="horizontal">
                                         <input type="radio" name="gender" id="radio-mini-1" value="male" /> 
                                         <label for="radio-mini-1">Male</label> 
                                         <input type="radio" name="gender" id="radio-mini-2" value="female" />
-                                        <label for="radio-mini-2">Female</label> 
-                                        <input type="radio" name="gender" id="radio-mini-3" value="other" /> 
-                                        <label for="radio-mini-3">Other</label>
+                                        <label for="radio-mini-2">Female</label>                                         
                                     </fieldset>
                                     <label for="b_year" class="label_text">Year of Birth:</label> 
                                     <div class="input_field">[</div> <div class="float_left"><input type="text" name="b_year" id="b_year" placeholder="Enter the Year Only" /></div><div class="input_field">]</div>
@@ -498,13 +443,77 @@
                                     <div class="input_field">[</div> <div class="float_left"><input type="text" name="phone" id="phone" value="" placeholder="Enter Phone Number" /></div><div class="input_field">]</div>
                                 </div>
                             </div>
-                            <div class="float_left"><a href="index5.html" data-role="button" onClick="storeInfo()"
-                               data-transition="none">Submit</a></div>
+                            <!--                            TODO:set the page link on the submit button -->
+                            <div class="float_left"><a href="index6.html" data-role="button" onClick="storeInfo()"
+                                                       data-transition="none" data-theme="b" data-mini="false">Submit</a></div>
                         </fieldset>
                     </form>                    
                 </div> <!-- /content -->
             </div> <!-- /p-reg page div -->
             <!-- /page -->
         </div>
+        
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="js/underscore.min.js"></script>
+        <script type="text/javascript" src="js/backbone.min.js"></script>
+        <script type="text/javascript" src="js/prettify.min.js"></script>
+        <script type="text/javascript" src="js/demo.js"></script>
+        <script type="text/javascript" src="js/jquery.ui.map.js"></script>
+        <script type="text/javascript"> 
+            
+            navigator.geolocation.getCurrentPosition(function(position) {
+                //                alert(position.coords.latitude + ", " + position.coords.longitude);
+                document.getElementById('location-cord').innerHTML = "Lat: <span class=\"cord-value\">" + position.coords.latitude + "</span>, Long: <span class=\"cord-value\">" + position.coords.longitude + "</span>";
+                showAddress(position.coords.latitude,position.coords.longitude);
+            });
+	
+            function showAddress(latitude,longitude){
+                var mapcoordain = latitude+','+longitude;
+                var geocoder = new google.maps.Geocoder();
+                var point = new google.maps.LatLng(latitude,longitude);//23.7442812,90.3728129
+
+                if (geocoder) {
+                    geocoder.geocode({ 'latLng': point }, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                //                                alert(results[0].formatted_address);
+                                document.getElementById('location-name').innerHTML = "<span class=\"cord-value\">" + results[0].formatted_address + "</span>";
+                                
+                                location_full_name = results[0].formatted_address;
+                                window.localStorage.setItem("location_full_name", location_full_name);
+                                //setLocation();
+                                
+                                
+                                $(function() { 
+                                    demo.add(function() {
+                                        $('#map_canvas').gmap({
+                                            'center': mapcoordain, 
+                                            'zoom': 17, 
+                                            'disableDefaultUI':true, 
+                                            'callback': function() {
+                                                var self = this;
+                                                self.addMarker({
+                                                    'position': this.get('map').getCenter()
+                                                }).click(function() {
+                                                    self.openInfoWindow({
+                                                        'content': 'Your Current Location'
+                                                    }, this);
+                                                });	
+                                            }
+                                        });
+                                    }).load();
+                                });
+                            } 
+                            else {
+                                console.log('No results found');
+                            }
+                        } 
+                        else {
+                            console.log('Geocoder failed due to: ' + status);
+                        }
+                    });
+                }
+            }   
+        </script>
     </body>
 </html>

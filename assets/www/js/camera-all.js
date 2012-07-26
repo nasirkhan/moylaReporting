@@ -9,7 +9,7 @@ var image_count=0;
 // Called when a photo is successfully retrieved
 //
 function onPhotoDataSuccess(imageData) {
-    $('#h_link').removeClass('ui-disabled');  
+     $('#h_link').removeClass('ui-disabled');
     // Uncomment to view the base64 encoded image data
     // console.log(imageData);
       
@@ -62,7 +62,7 @@ function onPhotoURISuccessMultiple(imageURI) {
     // Get image handle
     //      alert('<img style="display:block;width:60px;height:60px;" src='+imageURI+'/>');
     images[image_count++]=imageURI;
-    document.getElementById('gallery-image').innerHTML += '<div id=img-"'+image_count+'"><img style="display:block;width:60px;height:60px; float:left; padding-right:5px;" src="'+imageURI+'" /></div>';
+    document.getElementById('gallery-image').innerHTML += '<div id=img-"'+image_count+'" class=multi-imge><img style="display:block;width:60px;height:60px; float:left; padding-right:5px;" src="'+imageURI+'" /></div>';
     document.getElementById('image-count').innerHTML =images.toString();
       
       
