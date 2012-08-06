@@ -1,6 +1,6 @@
-var latitude;
-var longitude;
-var mapcoordain;
+var latitude_gps;
+var longitude_gps;
+//var mapcoordain;
 
 // onSuccess Geolocation
 //
@@ -16,13 +16,13 @@ function onGPSSuccess(position) {
                             'Timestamp: '          + new Date(position.timestamp)          + '<br />'
                         );
                 */
-    latitude=position.coords.latitude.toString();
-    longitude=position.coords.longitude.toString();
-    mapcoordain = latitude+','+longitude;
+    latitude_gps=position.coords.latitude.toString();
+    longitude_gps=position.coords.longitude.toString();
+    //mapcoordain = latitude+','+longitude;
     //          alert(mapcoordain);
-    showMap();
-    latitude=latitude.replace(".", ",");
-    longitude=longitude.replace(".", ",");
+    //showMap();
+    //latitude=latitude.replace(".", ",");
+    //longitude=longitude.replace(".", ",");
 //          document.getElementById('geo-locaion').innerHTML="<h4>Your Current Location</h4>"+mapcoordain.toString();//Latitude: "+latitude+"<br>Longtitude: "+longtitude;
          
           
@@ -34,7 +34,7 @@ function onGPSSuccess(position) {
 function onGPSError(error) {
     alert('code: '    + error.code    + '\n' +
         'message: ' + error.message + '\n');
-    document.getElementById('geo-locaion').innerHTML="Unable to get your current location!!";
+    //document.getElementById('geo-locaion').innerHTML="Unable to get your current location!!";
 }
     
 function showMap(){

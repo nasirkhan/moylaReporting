@@ -138,7 +138,10 @@ function loadSubmitPage(){
 }
 
 function emptyStorage(){
-    localStorage.removeItem('location_full_name');
-    localStorage.removeItem('category');
-    localStorage.removeItem('additional_remark_text');
+        //getobjectID();
+        localStorage.removeItem('location_full_name');
+        localStorage.removeItem('category');
+        localStorage.removeItem('additional_remark_text');
+    
+        getobjectID();
 }
