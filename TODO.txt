@@ -1,8 +1,0 @@
-The To-Do list of the project
-
-
-
-1. fix the button 9 issue
-
-2. fix the footer hide issue on the Additional comment page
-3.
