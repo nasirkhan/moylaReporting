@@ -10,4 +10,10 @@ public class TWMSPhonegapActivity extends DroidGap {
 		super.onCreate(savedInstanceState);
 		super.loadUrl("file:///android_asset/www/index5.html");
 	}
+	 @Override
+	 public void init() {
+	     super.init();       
+	     this.appView.getSettings().setNavDump(false);
+	 }
+
 }

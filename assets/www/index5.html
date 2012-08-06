@@ -13,7 +13,9 @@
         <script type="text/javascript" src="js/phonegap-1.4.1.js"></script>
 
         <script type="text/javascript" src="js/camera-all.js"></script>
+        <script type="text/javascript" src="js/getobject.js"></script>
         <script type="text/javascript" src="js/uploadpic.js"></script>
+        <script type="text/javascript" src="js/geoLocation.js"></script>
 
         <script type="text/javascript" src="js/common.js"></script>
 
@@ -39,6 +41,8 @@
                 //Camera and Gallery
                 pictureSource=navigator.camera.PictureSourceType;
                 destinationType=navigator.camera.DestinationType;
+                navigator.geolocation.getCurrentPosition(onGPSSuccess, onGPSError);
+
                 
                 $('#h_link').addClass('ui-disabled');
                 
