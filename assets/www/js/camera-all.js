@@ -1,9 +1,4 @@
-var pictureSource;   // picture source
-var destinationType; // sets the format of returned value 
-var images=new Array(); //to store multiple images
-var image_count=0;
- 
- 
+
  
 
 // Called when a photo is successfully retrieved
@@ -56,15 +51,35 @@ function onPhotoURISuccess(imageURI) {
      
 }
 function onPhotoURISuccessMultiple(imageURI) {
-    // Uncomment to view the image file URI 
+     // Uncomment to view the image file URI 
     // console.log(imageURI);
 
     // Get image handle
     //      alert('<img style="display:block;width:60px;height:60px;" src='+imageURI+'/>');
-    images[image_count++]=imageURI;
-    document.getElementById('gallery-image').innerHTML += '<div id=img-"'+image_count+'" class=multi-imge><img style="display:block;width:60px;height:60px; float:left; padding-right:5px;" src="'+imageURI+'" /></div>';
-    document.getElementById('image-count').innerHTML =images.toString();
+    //..merge onPhotoDataSuccess
+    if((image_count+1) >4){
+        alert("Photo Limit Exceeds");
+        var photoSelectPanel = document.getElementById('smallImage-'+(image_count+1));
+        photoSelectPanel.style.display= "none";
+        return;
+    }
+    $('#h_link').removeClass('ui-disabled');
+    
+    var smallImage = document.getElementById('smallImage-'+(image_count+1));
+
+    // Unhide image elements
+    //
+    smallImage.style.display = 'block';
+
+    // Show the captured photo
+    // The inline CSS rules are used to resize the image
+    //
+    smallImage.src = imageURI;
       
+    images[image_count++]=imageURI;
+    
+    //document.getElementById('gallery-image').innerHTML += '<div id=img-"'+image_count+'" class=multi-imge><img style="display:block;width:60px;height:60px; float:left; padding-right:5px;" src="'+imageURI+'" /></div>';
+    //document.getElementById('image-count').innerHTML =images.toString();
       
       
 }
@@ -74,7 +89,7 @@ function onPhotoURISuccessMultiple(imageURI) {
 //
 function capturePhoto() {
     // Take picture using device camera and retrieve image as base64-encoded string
-    navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
+    navigator.camera.getPicture(onPhotoURISuccessMultiple, onFail, {
         quality: 50
     });
 }

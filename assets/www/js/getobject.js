@@ -1,29 +1,31 @@
+var report_id;
 function getobjectID(){
-	alert("Getting ObjectID");
-    alert(latitude_gps+"##"+longitude_gps);
-//$.ajax({
+//	if(!latitude_gps){
+//		latitude_gps="23,765689";
+//    }
+//	if(!longitude_gps){
+//    	longitude_gps="90,357399";
+//    }
+   var param='{"NAME":"'+familyName+'","PREFIX":"'+prefix+'","INITIALS":"'+initials+'","EMAIL":"'+email+'","PHONE_NUMBER":"'+phone+'","GENDER":"V","BIRTHYEAR":"'+b_year+'","INCIDENT_CODE":"'+categort_id+'","REMARK":"'+additional_remark_text+'","MUNICIPALITY":"'+location_full_name+'","GPS_LATITUDE":"'+latitude_gps.toString()+'","GPS_LONGITUDE":"'+longitude_gps.toString()+'"}';
+   console.log(param);
+//    $.ajax({
 //        type: 'POST',
-//        data: '{"NAME":"'+window.localStorage.getItem("familyName")+'","PREFIX":"Mr","INITIALS":"SFM","EMAIL":"'+window.localStorage.getItem("email")+'","PHONE_NUMBER":"'+window.localStorage.getItem("phone")+'","GENDER":"V","BIRTHYEAR":"1984","INCIDENT_CODE":"2","REMARK":"test using phonegap","MUNICIPALITY":"Tilburg","GPS_LATITUDE":"23,1232212","GPS_LONGITUDE":"12,43433443"}',
+//        data: param,
 //        url: 'http://services.terbit.nl:2357/TWMSService/Report',
 //        cache: false,
 //        contentType: 'application/json;charset=utf-8',
 //	dataType: 'json',
 //        success: function(data){
-//            objectId=data;
-//            alert(objectId);
-//	    uploadPic(objectId);
+//            report_id=data;
+//        console.log(report_id);
+//	    uploadPic(report_id);
 //            
 //        },
 //        error: function(data){
-//            alert(data);
-//            alert('There was an error adding your comment');
+//            console.log("Server connection failed:"+data);
+//            alert('Could not connect to the remote server');
 //        }
 //    });
-  $.post("http://www.moila.nasirkhan.co.cc/index.php/report", {name:window.localStorage.getItem("familyName"),email: window.localStorage.getItem("email"),address:location_full_name.toString(),contact:window.localStorage.getItem("phone"),latitude:latitude_gps.toString(),longitude:longitude_gps.toString()},function(data) {
-                alert(data);
-               if(uploadPicPHP(data)){
-                   return true;
-               }
-                });
+
    return false;
 }

@@ -1,51 +1,24 @@
-function uploadPic(objectID){
+function uploadPic(report_id){
     for(var i=0;i<image_count;i++){
-        //var imgName = 'tiger.jpg';
         imgName=images[i].substr(images[i].lastIndexOf('/')+1);
-        alert("img name:"+images[i]);
-//        var options = new Array();
-        var upload_url="http://services.terbit.nl:2357/TWMSService/upload?token="+objectID+"&filenaam="+imgName;
-        alert(upload_url);
+        var options = new Array();
+        options.fileKey="file";
+        options.fileName=images[i].substr(images[i].lastIndexOf('/')+1);
+	  	options.mimeType="image/jpeg";
+        var upload_url="http://services.terbit.nl:2357/TWMSService/upload?token="+report_id+"&filenaam="+imgName+".jpg";
+        console.log(upload_url);
         
-//        var ft = new FileTransfer();
-//        ft.upload(images[i], upload_url, picUploadSuccess, picUploadFailed, options);
-        var params = {image: images[i]};
-        $.post(upload_url, params, function(data) {				
-				alert("Done");				
-			});
-    }
-    
-    
+       var ft = new FileTransfer();
+       ft.upload(images[i], upload_url, picUploadSuccess, picUploadFailed, options);
+    }   
 }
-function uploadPicPHP(report_id){
-            //alert("http://www.moila.itechfair.com/index.php/upload/"+report_id);
-	            for(var i=0;i<image_count;i++){
-	            alert(images[i]);
-	            var options = new FileUploadOptions();
-	            options.fileKey="file";
-	            options.fileName=images[i].substr(images[i].lastIndexOf('/')+1);
-	            options.mimeType="image/jpeg";
-	 
-	            var params = new Object();
-	            params.value1 = "test";
-	            params.value2 = "param";
-	 
-	            options.params = params;
-	            options.chunkedMode = false;
-	 
-	            var ft = new FileTransfer();
-	            ft.upload(images[i], "http://www.moila.nasirkhan.co.cc/index.php/upload/save/"+report_id, picUploadSuccess, picUploadFailed, options);
-            }
-            return true;
-
-
-}
-
 function picUploadSuccess(){
-    alert("Upload Done");
+    var reportStatus = document.getElementById("report-submit-status");
+    reportStatus.innerHTML = "<h4>Reported Successfuly. Report Id is "+report_id+". Use it for further reference.</h4>";
 }
 function picUploadFailed(){
-    alert("Upload failed!!");
+    var reportStatus = document.getElementById("report-submit-status");
+    reportStatus.innerHTML = "<h4>Failed!! Please Try Again.</h4>";
 }
 
 
